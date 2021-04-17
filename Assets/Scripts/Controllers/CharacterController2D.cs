@@ -6,9 +6,12 @@ public class CharacterController2D : MonoBehaviour
 {
     [SerializeField] float movementSpeed;
     [SerializeField] float jumpForce;
+    [SerializeField] int doubleJumpCount;
 
     Rigidbody2D rb;
     GroundCheck gc;
+
+    int jumpCount;
 
     private void Start()
     {
@@ -29,9 +32,20 @@ public class CharacterController2D : MonoBehaviour
             rb.velocity = new Vector2(0, rb.velocity.y);
         }
 
-        if (Input.GetButtonDown("Jump") && gc.IsGrounded())
+        if (Input.GetButtonDown("Jump"))
         {
-            rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
+            if (gc.IsGrounded())
+            {
+                rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
+                jumpCount = doubleJumpCount;
+            }
+            else if (jumpCount > 0)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, 0);
+                rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
+                jumpCount--;
+            }
         }
+        
     }
 }
