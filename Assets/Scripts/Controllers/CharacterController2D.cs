@@ -56,12 +56,12 @@ public class CharacterController2D : MonoBehaviour
         if (movement == 0) return;
         else if (movement > 0 && !isFaceRight)
         {
-            gameObject.transform.localScale *= (-1);
+            transform.localScale = new Vector3(transform.localScale.x * (-1), transform.localScale.y, transform.localScale.z);
             isFaceRight = true;
         }
         else if (movement < 0 && isFaceRight)
         {
-            gameObject.transform.localScale *= (-1);
+            transform.localScale = new Vector3(transform.localScale.x * (-1), transform.localScale.y, transform.localScale.z);
             isFaceRight = false;
         }
         
