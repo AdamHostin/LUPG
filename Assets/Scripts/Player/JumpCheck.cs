@@ -4,18 +4,26 @@ using UnityEngine;
 
 public class JumpCheck : MonoBehaviour
 {
-    bool canJump = false;
+    protected bool canJump = false;
+    [SerializeField] protected string[] tags;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Jumpable"))
-            canJump = true;
+        foreach (var tag in tags)
+        {
+            if (collision.CompareTag(tag))
+                canJump = true;
+        }
+        
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    protected virtual void  OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("Jumpable"))
-            canJump = false;
+        foreach (var tag in tags)
+        {
+            if (collision.CompareTag(tag))
+                canJump = false;
+        }
     }
 
     public bool CanJump()

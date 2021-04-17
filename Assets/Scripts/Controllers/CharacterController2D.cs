@@ -76,6 +76,7 @@ public class CharacterController2D : MonoBehaviour
             {
                 rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
                 jumpCount = doubleJumpCount;
+                gc.SetJump();
             }
             else if (wc.CanJump() && canWallJump)
             {
