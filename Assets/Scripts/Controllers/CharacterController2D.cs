@@ -8,7 +8,7 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] float jumpForce;
     [SerializeField] int doubleJumpCount;
     [SerializeField] float wallJumpInterval;
-
+    [SerializeField] bool isFaceRight = true;
     Rigidbody2D rb;
     GroundCheck gc;
     WallCheck wc;
@@ -16,8 +16,15 @@ public class CharacterController2D : MonoBehaviour
     int jumpCount;
     bool canWallJump = true;
 
+
+    float movementSmoothing = .3f;
+    Vector3 targetVelocity, lastVelocity = Vector3.zero;
+
     private void Start()
     {
+        QualitySettings.vSyncCount = 0;
+        Application.targetFrameRate = 1000;
+        
         rb = GetComponent<Rigidbody2D>();
         gc = GetComponentInChildren<GroundCheck>();
         wc = GetComponentInChildren<WallCheck>();
@@ -25,15 +32,12 @@ public class CharacterController2D : MonoBehaviour
 
     private void Update()
     {
-        var movement = Input.GetAxis("Horizontal");
+        int movement = (int) Input.GetAxisRaw("Horizontal");
+        targetVelocity = new Vector2(movement * movementSpeed, rb.velocity.y);
 
-        if (movement != 0)
+        if (Input.GetButtonDown("Dash"))
         {
-            rb.velocity = new Vector2(movement * movementSpeed, rb.velocity.y);
-        }
-        else if (Mathf.Abs(rb.velocity.x) > 0.001f)
-        {
-            rb.velocity = new Vector2(0, rb.velocity.y);
+            Debug.Log("Dash");
         }
 
         if (Input.GetButtonDown("Jump"))
@@ -64,5 +68,10 @@ public class CharacterController2D : MonoBehaviour
         canWallJump = false;
         yield return new WaitForSeconds(wallJumpInterval);
         canWallJump = true;
+    }
+
+    private void FixedUpdate()
+    {
+         rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref lastVelocity, movementSmoothing);
     }
 }
