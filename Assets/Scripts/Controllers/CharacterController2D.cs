@@ -23,7 +23,7 @@ public class CharacterController2D : MonoBehaviour
         wc = GetComponentInChildren<WallCheck>();
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         var movement = Input.GetAxis("Horizontal");
 
