@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GroundCheck : JumpCheck
+public class WallCheck : JumpCheck
 {
     
 }

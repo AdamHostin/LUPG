@@ -7,16 +7,20 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] float movementSpeed;
     [SerializeField] float jumpForce;
     [SerializeField] int doubleJumpCount;
+    [SerializeField] float wallJumpInterval;
 
     Rigidbody2D rb;
     GroundCheck gc;
+    WallCheck wc;
 
     int jumpCount;
+    bool canWallJump = true;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         gc = GetComponentInChildren<GroundCheck>();
+        wc = GetComponentInChildren<WallCheck>();
     }
 
     private void FixedUpdate()
@@ -34,12 +38,18 @@ public class CharacterController2D : MonoBehaviour
 
         if (Input.GetButtonDown("Jump"))
         {
-            if (gc.IsGrounded())
+            if (gc.CanJump())
             {
                 rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
                 jumpCount = doubleJumpCount;
             }
-            else if (jumpCount > 0)
+            else if (wc.CanJump() && canWallJump)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, 0);
+                rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
+                StartCoroutine(WallJumpTimer());
+            }
+            else if (jumpCount > 0 && !wc.CanJump())
             {
                 rb.velocity = new Vector2(rb.velocity.x, 0);
                 rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
@@ -47,5 +57,12 @@ public class CharacterController2D : MonoBehaviour
             }
         }
         
+    }
+
+    IEnumerator WallJumpTimer()
+    {
+        canWallJump = false;
+        yield return new WaitForSeconds(wallJumpInterval);
+        canWallJump = true;
     }
 }
