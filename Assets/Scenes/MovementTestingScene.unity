@@ -140,7 +140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6adcfa9c72616c40b24937b1fcfecf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fallMultiplier: 2
+  fallMultiplier: 3
   lowJumpMultiplier: 5
 --- !u!4 &46052244 stripped
 Transform:
@@ -652,11 +652,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7682539312270935192, guid: 68fad44b35fddf5458645ddca0f721ab, type: 3}
       propertyPath: m_Interpolate
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7682539312270935194, guid: 68fad44b35fddf5458645ddca0f721ab, type: 3}
       propertyPath: m_RootOrder
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7682539312270935194, guid: 68fad44b35fddf5458645ddca0f721ab, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7682539312270935194, guid: 68fad44b35fddf5458645ddca0f721ab, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7682539312270935194, guid: 68fad44b35fddf5458645ddca0f721ab, type: 3}
       propertyPath: m_LocalPosition.x

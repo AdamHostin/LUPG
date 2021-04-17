@@ -20,11 +20,11 @@ public class JumpModifier : MonoBehaviour
 
     void Update()
     {
-        if (rb.velocity.y < 0)
+        if (rb.velocity.y < -Mathf.Epsilon)
         {
             rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime * rb.gravityScale;
         }
-        else if (rb.velocity.y * rb.gravityScale > 0 && !(Input.GetButton("Jump")))
+        else if (rb.velocity.y  > 0 && !(Input.GetButton("Jump")))
         {
             rb.velocity += new Vector2(transform.up.x, transform.up.y) * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime * rb.gravityScale;
         }
