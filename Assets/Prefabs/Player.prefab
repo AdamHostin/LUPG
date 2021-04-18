@@ -360,6 +360,7 @@ MonoBehaviour:
   jumpForce: 5
   doubleJumpCount: 1
   wallJumpInterval: 1
+  dashValue: 100
   isFaceRight: 1
 --- !u!114 &46052240
 MonoBehaviour:

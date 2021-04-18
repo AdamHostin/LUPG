@@ -9,6 +9,7 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] float jumpForce;
     [SerializeField] int doubleJumpCount;
     [SerializeField] float wallJumpInterval;
+    [SerializeField] float dashValue;
     [SerializeField] bool isFaceRight = true;
     Rigidbody2D rb;
     GroundCheck gc;
@@ -40,15 +41,36 @@ public class CharacterController2D : MonoBehaviour
         movement = (int) Input.GetAxisRaw("Horizontal");
         targetVelocity = new Vector2(movement * movementSpeed, rb.velocity.y);
 
-        if (Input.GetButtonDown("Dash"))
-        {
-            Debug.Log("Dash");
-        }
+        ManageDash();
 
         ManageJump();
         ResolveFacing();
        
         
+    }
+
+    void ManageDash()
+    {
+        if (Input.GetButtonDown("Dash"))
+        {
+            Debug.Log("Dash");
+            if (rb.velocity.x > Mathf.Epsilon)
+            {
+                rb.AddForce(rb.velocity.normalized * dashValue);
+            }
+            else
+            {
+                if (isFaceRight)
+                {
+                    rb.AddForce(new Vector2(1, 0) * dashValue);
+                }
+                else
+                {
+                    rb.AddForce(new Vector2(-1, 0) * dashValue);
+                }
+            }
+
+        }
     }
 
     void ResolveFacing()
