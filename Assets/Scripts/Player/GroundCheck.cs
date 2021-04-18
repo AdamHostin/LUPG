@@ -12,12 +12,16 @@ public class GroundCheck : JumpCheck
     {
         isJumped = true;
     }
+    protected override void OnTriggerEnter2D(Collider2D collision)
+    {
+        base.OnTriggerEnter2D(collision);
+        StopCoroutine(CoyoteeJump());
+    }
 
     protected override void OnTriggerExit2D(Collider2D collision)
     {
         if (!isJumped)
         {
-            Debug.Log("Coyotee");
             StartCoroutine(CoyoteeJump());
         }
         else
@@ -25,7 +29,7 @@ public class GroundCheck : JumpCheck
             canJump = false;
             isJumped = false;
         }
-        
+
 
     }
 
@@ -35,7 +39,10 @@ public class GroundCheck : JumpCheck
         //yield return coyoteeFrames;
 
         yield return new WaitForSeconds(coyoteeSeconds);
-
-        canJump = false;
+        if (!isGrounded)
+        {
+            canJump = false;
+        }
+        
     }
 }

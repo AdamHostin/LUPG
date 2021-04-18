@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class JumpCheck : MonoBehaviour
 {
-    protected bool canJump = false;
+    [SerializeField] protected bool canJump = true;
+    [SerializeField] protected bool isGrounded = true;
     [SerializeField] protected string[] tags;
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         foreach (var tag in tags)
         {
             if (collision.CompareTag(tag))
+            {
                 canJump = true;
+                isGrounded = true;
+            }
+                
         }
         
     }
@@ -22,7 +27,10 @@ public class JumpCheck : MonoBehaviour
         foreach (var tag in tags)
         {
             if (collision.CompareTag(tag))
+            {
                 canJump = false;
+                isGrounded = false;
+            }          
         }
     }
 

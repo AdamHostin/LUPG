@@ -53,7 +53,6 @@ public class CharacterController2D : MonoBehaviour
     {
         if (Input.GetButtonDown("Dash"))
         {
-            Debug.Log("Dash");
             if (rb.velocity.x > Mathf.Epsilon)
             {
                 rb.AddForce(rb.velocity.normalized * dashValue);
