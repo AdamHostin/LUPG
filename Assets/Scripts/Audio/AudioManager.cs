@@ -96,6 +96,7 @@ public class AudioManager : MonoBehaviour
         LoadValue("masterVol");
         LoadValue("sfxVol");
         LoadValue("ambientVol");
+        LoadValue("musicVol");
     }
 
     void LoadValue(string key)
