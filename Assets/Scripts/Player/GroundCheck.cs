@@ -16,6 +16,7 @@ public class GroundCheck : JumpCheck
     {
         base.OnTriggerEnter2D(collision);
         StopCoroutine(CoyoteeJump());
+        isJumped = false;
     }
 
     protected override void OnTriggerExit2D(Collider2D collision)
@@ -27,8 +28,8 @@ public class GroundCheck : JumpCheck
         else
         {
             canJump = false;
-            isJumped = false;
         }
+        isGrounded = false;
 
 
     }
@@ -36,7 +37,6 @@ public class GroundCheck : JumpCheck
     IEnumerator CoyoteeJump()
     {
 
-        //yield return coyoteeFrames;
 
         yield return new WaitForSeconds(coyoteeSeconds);
         if (!isGrounded)
