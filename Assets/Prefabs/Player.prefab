@@ -152,6 +152,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57f975361d7a44e4e9659864bfc0c116, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canJump: 0
+  isGrounded: 1
   tags:
   - Wall
 --- !u!1 &7682539312059995991
@@ -214,6 +216,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fda9b5c9f03be514683a67da276ff89a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canJump: 1
+  isGrounded: 1
   tags:
   - Ground
   - Player
