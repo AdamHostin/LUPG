@@ -641,6 +641,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fda9b5c9f03be514683a67da276ff89a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canJump: 1
+  isGrounded: 1
   tags: []
   coyoteeSeconds: 0.5
 --- !u!1 &1107007486604486017
@@ -673,6 +675,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57f975361d7a44e4e9659864bfc0c116, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canJump: 1
+  isGrounded: 1
   tags: []
 --- !u!4 &6514706449265173571
 Transform:
@@ -721,6 +725,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6745765111216879915, guid: 68fad44b35fddf5458645ddca0f721ab, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7682539312270935194, guid: 68fad44b35fddf5458645ddca0f721ab, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -804,6 +812,7 @@ MonoBehaviour:
   jumpForce: 5
   doubleJumpCount: 1
   wallJumpInterval: 1
+  dashValue: 0
   isFaceRight: 1
 --- !u!50 &7682539310781909646
 Rigidbody2D:
