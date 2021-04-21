@@ -16,6 +16,7 @@ public class JumpCheck : MonoBehaviour
             {
                 canJump = true;
                 isGrounded = true;
+                break;
             }
                 
         }
@@ -30,6 +31,7 @@ public class JumpCheck : MonoBehaviour
             {
                 canJump = false;
                 isGrounded = false;
+                break;
             }          
         }
     }
