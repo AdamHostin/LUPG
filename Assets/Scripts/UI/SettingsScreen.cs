@@ -11,6 +11,7 @@ public class SettingsScreen : ScreenBase
     public Slider mainSlider;
     public Slider sfxSlider;
     public Slider ambientSlider;
+    public Slider musicSlider;
 
     public override void Show()
     {
@@ -18,6 +19,7 @@ public class SettingsScreen : ScreenBase
         LoadValue("masterVol", mainSlider);
         LoadValue("sfxVol", sfxSlider);
         LoadValue("ambientVol", ambientSlider);
+        LoadValue("musicVol", musicSlider);
     }
 
     public override void Hide()
@@ -25,23 +27,29 @@ public class SettingsScreen : ScreenBase
         PlayerPrefs.SetFloat("masterVol", mainSlider.value);
         PlayerPrefs.SetFloat("sfxVol", sfxSlider.value);
         PlayerPrefs.SetFloat("ambientVol", ambientSlider.value);
+        PlayerPrefs.SetFloat("musicVol", musicSlider.value);
 
         base.Hide();
     }
 
     public void SetMainVolume()
     {
-        //mainMixer.SetFloat("masterVol", Mathf.Log10(Mathf.Max(mainSlider.value, 0.0001f)) * 20f);
+        mainMixer.SetFloat("masterVol", Mathf.Log10(Mathf.Max(mainSlider.value, 0.0001f)) * 20f);
     }
 
     public void SetSFXVolume()
     {
-        //mainMixer.SetFloat("sfxVol", Mathf.Log10(Mathf.Max(sfxSlider.value, 0.0001f)) * 20f);
+        mainMixer.SetFloat("sfxVol", Mathf.Log10(Mathf.Max(sfxSlider.value, 0.0001f)) * 20f);
     }
 
     public void SetAmbientVolume()
     {
-        //mainMixer.SetFloat("ambientVol", Mathf.Log10(Mathf.Max(ambientSlider.value, 0.0001f)) * 20f);
+        mainMixer.SetFloat("ambientVol", Mathf.Log10(Mathf.Max(ambientSlider.value, 0.0001f)) * 20f);
+    }
+
+    public void SetMusicVolume()
+    {
+        mainMixer.SetFloat("musictVol", Mathf.Log10(Mathf.Max(musicSlider.value, 0.0001f)) * 20f);
     }
 
     void LoadValue(string key, Slider slider)
