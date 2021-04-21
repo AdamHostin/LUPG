@@ -10,6 +10,7 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] int doubleJumpCount;
     [SerializeField] float wallJumpInterval;
     [SerializeField] float dashValue;
+    [Header("Debug don't touch")]
     [SerializeField] bool isFaceRight = true;
     Rigidbody2D rb;
     GroundCheck gc;
