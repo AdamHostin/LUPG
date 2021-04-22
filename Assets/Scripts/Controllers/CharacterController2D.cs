@@ -2,8 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
-public class CharacterController2D : MonoBehaviour
+public class CharacterController2D : NetworkBehaviour
 {
     [SerializeField] float movementSpeed;
     [SerializeField] float jumpForce;
