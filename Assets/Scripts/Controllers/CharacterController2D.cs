@@ -39,6 +39,7 @@ public class CharacterController2D : NetworkBehaviour
 
     private void Update()
     {
+        if (hasAuthority == false) return;
         movement = (int) Input.GetAxisRaw("Horizontal");
         targetVelocity = new Vector2(movement * movementSpeed, rb.velocity.y);
 
