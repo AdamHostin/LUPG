@@ -4,9 +4,15 @@ using UnityEngine;
 
 public class JumpCheck : MonoBehaviour
 {
+    [Header("Debug don't touch")]
     [SerializeField] protected bool canJump = true;
     [SerializeField] protected bool isGrounded = true;
+
+    [Header("Change at will ;)")]
     [SerializeField] protected string[] tags;
+
+    
+    
 
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
