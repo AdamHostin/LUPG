@@ -10,6 +10,8 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] int doubleJumpCount;
     [SerializeField] float wallJumpInterval;
     [SerializeField] float dashValue;
+    [SerializeField] bool dashType;
+    [SerializeField] float dashBorder;
     [Header("Debug don't touch")]
     [SerializeField] bool isFaceRight = true;
     Rigidbody2D rb;
@@ -25,6 +27,8 @@ public class CharacterController2D : MonoBehaviour
 
     float movementSmoothing = .3f;
     Vector3 targetVelocity, lastVelocity = Vector3.zero;
+
+    [SerializeField] bool isDashed = false;
 
     private void Start()
     {
@@ -46,8 +50,8 @@ public class CharacterController2D : MonoBehaviour
 
         ManageJump();
         ResolveFacing();
-       
-        
+
+
     }
 
     void ManageDash()
@@ -56,7 +60,10 @@ public class CharacterController2D : MonoBehaviour
         {
             if (rb.velocity.x > Mathf.Epsilon)
             {
-                rb.AddForce(rb.velocity.normalized * dashValue);
+                if (dashType)
+                    rb.AddForce(rb.velocity.normalized * dashValue);
+                else
+                    rb.AddForce(new Vector3(rb.velocity.normalized.x, 0, 0) * dashValue);
             }
             else
             {
@@ -70,6 +77,7 @@ public class CharacterController2D : MonoBehaviour
                 }
             }
 
+            StartCoroutine(ManageDashState());
         }
     }
 
@@ -86,8 +94,8 @@ public class CharacterController2D : MonoBehaviour
             transform.localScale = new Vector3(transform.localScale.x * (-1), transform.localScale.y, transform.localScale.z);
             isFaceRight = false;
         }
-        
 
+        
     }
 
     void ManageJump()
@@ -125,5 +133,15 @@ public class CharacterController2D : MonoBehaviour
     private void FixedUpdate()
     {
          rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref lastVelocity, movementSmoothing);
+    }
+
+    IEnumerator ManageDashState()
+    {
+        isDashed = true; Debug.Log("dash true");
+
+        yield return new WaitForSeconds(0.25f);
+        yield return new WaitUntil(() => Mathf.Abs(rb.velocity.x) < dashBorder);
+
+        isDashed = false; Debug.Log("dash false");
     }
 }

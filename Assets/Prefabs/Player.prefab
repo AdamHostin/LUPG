@@ -365,8 +365,11 @@ MonoBehaviour:
   jumpForce: 5
   doubleJumpCount: 1
   wallJumpInterval: 1
-  dashValue: 100
+  dashValue: 200
+  dashType: 0
+  dashBorder: 8
   isFaceRight: 1
+  isDashed: 0
 --- !u!114 &46052240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -393,4 +396,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc47b332dc3569540ad369b8b3748d8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerName: 
   maxHealth: 100
+  health: 0
