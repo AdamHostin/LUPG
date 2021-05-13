@@ -13,6 +13,7 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] bool dashType;
     [SerializeField] float dashBorder;
     [SerializeField] float blockTime;
+    [SerializeField] float timeBetweenBlocks;
     [Header("Debug don't touch")]
     [SerializeField] bool isFaceRight = true;
     Rigidbody2D rb;
@@ -30,6 +31,7 @@ public class CharacterController2D : MonoBehaviour
     float movementSmoothing = .3f;
     Vector3 targetVelocity, lastVelocity = Vector3.zero;
 
+    [SerializeField] bool canBlock = true;
     [SerializeField] bool isBlocked = false;
     [SerializeField] bool isDashed = false;
 
@@ -146,7 +148,7 @@ public class CharacterController2D : MonoBehaviour
 
     void ManageBlock()
     {
-        if (Input.GetKeyDown(KeyCode.E) && !isDashed)
+        if (Input.GetKeyDown(KeyCode.E) && !isDashed && canBlock)
         {
             StartCoroutine(ManageBlockState());
             //Block animation
@@ -219,8 +221,12 @@ public class CharacterController2D : MonoBehaviour
     IEnumerator ManageBlockState()
     {
         isBlocked = true;
+        canBlock = false;
         yield return new WaitForSeconds(blockTime);
         isBlocked = false;
+
+        yield return new WaitForSeconds(timeBetweenBlocks);
+        canBlock = true;
     }
 
     public void SetPlayerIndex(int index)
