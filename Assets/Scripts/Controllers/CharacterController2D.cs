@@ -12,6 +12,7 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] float dashValue;
     [SerializeField] bool dashType;
     [SerializeField] float dashBorder;
+    [SerializeField] float blockTime;
     [Header("Debug don't touch")]
     [SerializeField] bool isFaceRight = true;
     Rigidbody2D rb;
@@ -29,6 +30,7 @@ public class CharacterController2D : MonoBehaviour
     float movementSmoothing = .3f;
     Vector3 targetVelocity, lastVelocity = Vector3.zero;
 
+    [SerializeField] bool isBlocked = false;
     [SerializeField] bool isDashed = false;
 
     int playerIndex = 0;        //Set by some manager when player joins the game
@@ -51,7 +53,7 @@ public class CharacterController2D : MonoBehaviour
         targetVelocity = new Vector2(movement * movementSpeed, rb.velocity.y);
 
         ManageDash();
-
+        ManageBlock();
         ManageJump();
         ResolveFacing();
 
@@ -76,7 +78,7 @@ public class CharacterController2D : MonoBehaviour
 
     void ManageDash()
     {
-        if (Input.GetButtonDown("Dash"))
+        if (Input.GetButtonDown("Dash") && !isBlocked)
         {
             if (rb.velocity.x > Mathf.Epsilon)
             {
@@ -98,6 +100,15 @@ public class CharacterController2D : MonoBehaviour
             }
 
             StartCoroutine(ManageDashState());
+        }
+    }
+
+    void ManageBlock()
+    {
+        if (Input.GetKeyDown(KeyCode.E) && !isDashed)
+        {
+            StartCoroutine(ManageBlockState());
+            //Block animation
         }
     }
 
@@ -164,6 +175,13 @@ public class CharacterController2D : MonoBehaviour
         isDashed = false; Debug.Log("dash false");
     }
 
+    IEnumerator ManageBlockState()
+    {
+        isBlocked = true;
+        yield return new WaitForSeconds(blockTime);
+        isBlocked = false;
+    }
+
     public void SetPlayerIndex(int index)
     {
         playerIndex = index;
@@ -177,5 +195,10 @@ public class CharacterController2D : MonoBehaviour
     public bool IsDashed()
     {
         return isDashed;
+    }
+
+    public bool IsBlocked()
+    {
+        return isBlocked;
     }
 }
