@@ -67,11 +67,52 @@ public class CharacterController2D : MonoBehaviour
             CharacterController2D playerController = collision.gameObject.GetComponent<CharacterController2D>();
             PlayerHealth otherPlayerHealth = collision.gameObject.GetComponent<PlayerHealth>();
 
-            if (isDashed && playerController.IsDashed() && playerIndex > playerController.GetPlayerIndex())
+            if (isDashed)
             {
-                int targetHealth = (playerHealth.GetHealth() + otherPlayerHealth.GetHealth()) / 2;
-                playerHealth.SetHealth(targetHealth);
-                otherPlayerHealth.SetHealth(targetHealth);
+                if (playerController.IsDashed() && playerIndex > playerController.GetPlayerIndex())
+                {
+                    //Both dashed
+                    int targetHealth = (playerHealth.GetHealth() + otherPlayerHealth.GetHealth()) / 2;
+                    playerHealth.SetHealth(targetHealth);
+                    otherPlayerHealth.SetHealth(targetHealth);
+                }
+                else if (!playerController.IsDashed())
+                {
+                    //One dashed
+                }
+                else if (playerController.IsBlocked())
+                {
+                    //One dashed one blocked
+                }
+            }
+            else
+            {
+                if (playerController.IsBlocked())
+                {
+                    //The other blocks
+                }
+                else if (!playerController.IsBlocked() && !playerController.IsDashed() && playerIndex > playerController.GetPlayerIndex())
+                {
+                    //Just run into each other
+                }
+            }
+        }
+    }
+
+    public void JumpOnPlayer(GameObject player)
+    {
+        CharacterController2D playerController = player.GetComponent<CharacterController2D>();
+        PlayerHealth otherPlayerHealth = player.GetComponent<PlayerHealth>();
+
+        if (!isDashed)
+        {
+            if (playerController.IsBlocked())
+            {
+                //One jumps on the other but he blocks
+            }
+            else if (!playerController.IsBlocked() && !playerController.IsDashed())
+            {
+                //One jumps on the other and no one blocking anything
             }
         }
     }
