@@ -29,13 +29,10 @@ public class CharacterController2D : MonoBehaviour
     float movementSmoothing = .3f;
     Vector3 targetVelocity, lastVelocity = Vector3.zero;
 
-<<<<<<< Updated upstream
-=======
     [SerializeField] bool isDashed = false;
 
     int playerIndex = 0;        //Set by some manager when player joins the game
 
->>>>>>> Stashed changes
     private void Start()
     {
         QualitySettings.vSyncCount = 0;
@@ -157,9 +154,6 @@ public class CharacterController2D : MonoBehaviour
     {
          rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref lastVelocity, movementSmoothing);
     }
-<<<<<<< Updated upstream
-=======
-
     IEnumerator ManageDashState()
     {
         isDashed = true; Debug.Log("dash true");
@@ -184,5 +178,4 @@ public class CharacterController2D : MonoBehaviour
     {
         return isDashed;
     }
->>>>>>> Stashed changes
 }
