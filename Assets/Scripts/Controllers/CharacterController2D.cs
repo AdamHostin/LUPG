@@ -17,6 +17,7 @@ public class CharacterController2D : MonoBehaviour
     Rigidbody2D rb;
     GroundCheck gc;
     WallCheck wc;
+    PlayerHealth playerHealth;
     
 
     int jumpCount;
@@ -28,8 +29,13 @@ public class CharacterController2D : MonoBehaviour
     float movementSmoothing = .3f;
     Vector3 targetVelocity, lastVelocity = Vector3.zero;
 
+<<<<<<< Updated upstream
+=======
     [SerializeField] bool isDashed = false;
 
+    int playerIndex = 0;        //Set by some manager when player joins the game
+
+>>>>>>> Stashed changes
     private void Start()
     {
         QualitySettings.vSyncCount = 0;
@@ -38,6 +44,7 @@ public class CharacterController2D : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         gc = GetComponentInChildren<GroundCheck>();
         wc = GetComponentInChildren<WallCheck>();
+        playerHealth = GetComponent<PlayerHealth>();
 
     }
 
@@ -52,6 +59,22 @@ public class CharacterController2D : MonoBehaviour
         ResolveFacing();
 
 
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            CharacterController2D playerController = collision.gameObject.GetComponent<CharacterController2D>();
+            PlayerHealth otherPlayerHealth = collision.gameObject.GetComponent<PlayerHealth>();
+
+            if (isDashed && playerController.IsDashed() && playerIndex > playerController.GetPlayerIndex())
+            {
+                int targetHealth = (playerHealth.GetHealth() + otherPlayerHealth.GetHealth()) / 2;
+                playerHealth.SetHealth(targetHealth);
+                otherPlayerHealth.SetHealth(targetHealth);
+            }
+        }
     }
 
     void ManageDash()
@@ -134,6 +157,8 @@ public class CharacterController2D : MonoBehaviour
     {
          rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref lastVelocity, movementSmoothing);
     }
+<<<<<<< Updated upstream
+=======
 
     IEnumerator ManageDashState()
     {
@@ -144,4 +169,20 @@ public class CharacterController2D : MonoBehaviour
 
         isDashed = false; Debug.Log("dash false");
     }
+
+    public void SetPlayerIndex(int index)
+    {
+        playerIndex = index;
+    }
+
+    public int GetPlayerIndex()
+    {
+        return playerIndex;
+    }
+
+    public bool IsDashed()
+    {
+        return isDashed;
+    }
+>>>>>>> Stashed changes
 }
