@@ -6,6 +6,7 @@ using UnityEngine;
 public class CharacterController2D : MonoBehaviour
 {
     [SerializeField] float movementSpeed;
+    [SerializeField] float movementSmoothing = .3f;
     [SerializeField] float jumpForce;
     [SerializeField] int doubleJumpCount;
     [SerializeField] float wallJumpInterval;
@@ -23,7 +24,7 @@ public class CharacterController2D : MonoBehaviour
     int movement;
 
 
-    float movementSmoothing = .3f;
+    
     Vector3 targetVelocity, lastVelocity = Vector3.zero;
 
     private void Start()
