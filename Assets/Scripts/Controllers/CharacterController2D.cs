@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class CharacterController2D : MonoBehaviour
 {
@@ -39,15 +40,18 @@ public class CharacterController2D : MonoBehaviour
 
     private void Update()
     {
-        movement = (int) Input.GetAxisRaw("Horizontal");
-        targetVelocity = new Vector2(movement * movementSpeed, rb.velocity.y);
-
         ManageDash();
 
         ManageJump();
         ResolveFacing();
        
         
+    }
+
+    public void Move(InputAction.CallbackContext context)
+    {
+        //movement = context.ReadValue<Vector2>();
+        targetVelocity = new Vector2(movement * movementSpeed, rb.velocity.y);
     }
 
     void ManageDash()
