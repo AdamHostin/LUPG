@@ -10,7 +10,7 @@ public class UnstablePlatform : MonoBehaviour
     [SerializeField] int changeFrequency;
     [SerializeField] float opacityOffset;
     [SerializeField] float minAlphaToCollide;
-    bool isActive = true;
+    
 
     Collider2D platformColl;
     Collider2D platformTrigger;
@@ -27,7 +27,7 @@ public class UnstablePlatform : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if ((collision.tag == "Player") && isActive)
+        if (collision.tag == "Player")
         {
             StartCoroutine(Fade());
         }
@@ -46,7 +46,7 @@ public class UnstablePlatform : MonoBehaviour
             if (sprite.color.a < minAlphaToCollide)
             {
                 platformColl.enabled = false;
-                isActive = false;
+                platformTrigger.enabled = false;  
             }
 
             yield return changeFrequency;
@@ -54,11 +54,8 @@ public class UnstablePlatform : MonoBehaviour
 
         sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, 0);
 
-        Debug.Log("Before Fade window");
-
         yield return new WaitForSeconds(secondsToBeInvisible);
 
-        Debug.Log("After Fade window");
 
         while (sprite.color.a <  1 - opacityOffset)
         {
@@ -73,8 +70,7 @@ public class UnstablePlatform : MonoBehaviour
 
             yield return changeFrequency;
         }
-        Debug.Log("Should work");
-        isActive = true;
+        platformTrigger.enabled = true;
     }
     
 }
