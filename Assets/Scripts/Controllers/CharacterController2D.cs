@@ -38,42 +38,30 @@ public class CharacterController2D : MonoBehaviour
 
     }
 
-    private void Update()
-    {
-        ManageDash();
-
-        ManageJump();
-        ResolveFacing();
-       
-        
-    }
-
     public void Move(InputAction.CallbackContext context)
     {
-        //movement = context.ReadValue<Vector2>();
+        movement = (int) context.ReadValue<float>();
+        Debug.Log(movement);
         targetVelocity = new Vector2(movement * movementSpeed, rb.velocity.y);
+        ResolveFacing();
     }
 
-    void ManageDash()
+    public void ManageDash(InputAction.CallbackContext context)
     {
-        if (Input.GetButtonDown("Dash"))
+        if (rb.velocity.x > Mathf.Epsilon)
         {
-            if (rb.velocity.x > Mathf.Epsilon)
+            rb.AddForce(rb.velocity.normalized * dashValue);
+        }
+        else
+        {
+            if (isFaceRight)
             {
-                rb.AddForce(rb.velocity.normalized * dashValue);
+                rb.AddForce(new Vector2(1, 0) * dashValue);
             }
             else
             {
-                if (isFaceRight)
-                {
-                    rb.AddForce(new Vector2(1, 0) * dashValue);
-                }
-                else
-                {
-                    rb.AddForce(new Vector2(-1, 0) * dashValue);
-                }
+                rb.AddForce(new Vector2(-1, 0) * dashValue);
             }
-
         }
     }
 
@@ -94,28 +82,25 @@ public class CharacterController2D : MonoBehaviour
 
     }
 
-    void ManageJump()
+    public void ManageJump(InputAction.CallbackContext context)
     {
-        if (Input.GetButtonDown("Jump"))
+        if (gc.CanJump())
         {
-            if (gc.CanJump())
-            {
-                rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
-                jumpCount = doubleJumpCount;
-                gc.SetJump();
-            }
-            else if (wc.CanJump() && canWallJump)
-            {
-                rb.velocity = new Vector2(rb.velocity.x, 0);
-                rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
-                StartCoroutine(WallJumpTimer());
-            }
-            else if (jumpCount > 0 && !wc.CanJump())
-            {
-                rb.velocity = new Vector2(rb.velocity.x, 0);
-                rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
-                jumpCount--;
-            }
+            rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
+            jumpCount = doubleJumpCount;
+            gc.SetJump();
+        }
+        else if (wc.CanJump() && canWallJump)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, 0);
+            rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
+            StartCoroutine(WallJumpTimer());
+        }
+        else if (jumpCount > 0 && !wc.CanJump())
+        {
+            rb.velocity = new Vector2(rb.velocity.x, 0);
+            rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
+            jumpCount--;
         }
     }
 
