@@ -14,7 +14,7 @@ public class CollectibleSinMovement : MonoBehaviour
         timer += Time.fixedDeltaTime;
         //if (timer > 2 * Mathf.PI) timer -= (Mathf.PI * 2);
 
-        transform.localPosition = new Vector3(transform.localPosition.x, Oscillate(), transform.localPosition.z);
+        transform.localPosition = new Vector3(transform.localPosition.x, Oscillate()-sinScale/2f, transform.localPosition.z);
     }
 
     float Oscillate()
