@@ -7,6 +7,7 @@ TagManager:
   - Jumpable
   - Ground
   - Wall
+  - Collectible
   layers:
   - Default
   - TransparentFX
