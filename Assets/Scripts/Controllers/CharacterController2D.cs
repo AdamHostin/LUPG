@@ -36,6 +36,7 @@ public class CharacterController2D : MonoBehaviour
 
     float movementSmoothing = .3f;
     Vector3 targetVelocity, lastVelocity = Vector3.zero;
+    float targetVelocityX = 0f;
 
     [SerializeField] bool canBlock = true;
     [SerializeField] bool isBlocked = false;
@@ -131,7 +132,8 @@ public class CharacterController2D : MonoBehaviour
         if (!context.performed)
             movement = 0;
 
-        targetVelocity = new Vector2(movement * movementSpeed, rb.velocity.y);
+        targetVelocityX = movement * movementSpeed;
+        Debug.Log(targetVelocity);
         ResolveFacing();
     }
 
@@ -186,7 +188,7 @@ public class CharacterController2D : MonoBehaviour
         if (!context.performed)
             return;
 
-        if (Input.GetKeyDown(KeyCode.E) && !isDashed && canBlock)
+        if (!isDashed && canBlock)
         {
             StartCoroutine(ManageBlockState());
             //Block animation
@@ -273,6 +275,7 @@ public class CharacterController2D : MonoBehaviour
 
     private void FixedUpdate()
     {
-         rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref lastVelocity, movementSmoothing);
+        targetVelocity = new Vector2(targetVelocityX, rb.velocity.y);
+        rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref lastVelocity, movementSmoothing);
     }
 }
