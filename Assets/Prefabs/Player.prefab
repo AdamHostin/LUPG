@@ -366,11 +366,11 @@ MonoBehaviour:
   jumpForce: 5
   doubleJumpCount: 1
   wallJumpInterval: 1
-  dashValue: 100
+  dashValue: 200
   dashType: 0
-  dashBorder: 0
-  blockTime: 0
-  timeBetweenBlocks: 0
+  dashBorder: 8
+  blockTime: 2
+  timeBetweenBlocks: 2
   smallRepulsionForce: 0
   bigRepulsionForce: 0
   jumpOnHeal: 0
