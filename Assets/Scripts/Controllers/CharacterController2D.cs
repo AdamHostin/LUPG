@@ -11,7 +11,7 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] int doubleJumpCount;
     [SerializeField] float wallJumpInterval;
     [SerializeField] float dashValue;
-    [SerializeField] bool dashType;
+    [SerializeField] bool isDashStraight;
     [SerializeField] float dashBorder;
     [SerializeField] float blockTime;
     [SerializeField] float timeBetweenBlocks;
@@ -19,6 +19,7 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] float bigRepulsionForce;
     [SerializeField] int jumpOnHeal;
     [SerializeField] int jumpOnDamage;
+    [SerializeField] DashType dashType;
     [Header("Debug don't touch")]
     [SerializeField] bool isFaceRight = true;
     Rigidbody2D rb;
@@ -144,27 +145,62 @@ public class CharacterController2D : MonoBehaviour
 
         if (!isBlocked)
         {
-            if (rb.velocity.x > Mathf.Epsilon)
+
+            switch (dashType)
             {
-                if (dashType)
-                    rb.AddForce(rb.velocity.normalized * dashValue);
-                else
-                    rb.AddForce(new Vector3(rb.velocity.normalized.x, 0, 0) * dashValue);
+                case DashType.straight:
+                    DashStraight();
+                    break;
+                case DashType.hight:
+                    DashWithHight();
+                    break;
+                case DashType.combined:
+                    DashCombined();
+                    break;
+                default:
+                    break;
             }
-            else
-            {
-                if (isFaceRight)
-                {
-                    rb.AddForce(new Vector2(1, 0) * dashValue);
-                }
-                else
-                {
-                    rb.AddForce(new Vector2(-1, 0) * dashValue);
-                }
-            }
+            
         }
         StartCoroutine(ManageDashState());
     }
+
+    void DashWithHight()
+    {
+        if (isFaceRight)
+        {
+            rb.AddForce(new Vector2(1, rb.velocity.normalized.y) * dashValue);
+        }
+        else
+        {
+            rb.AddForce(new Vector2(-1, rb.velocity.normalized.y) * dashValue);
+        }
+    }
+
+    void DashCombined()
+    {
+        if (rb.velocity.y > 0)
+        {
+            DashWithHight();
+        }
+        else
+        {
+            DashStraight();
+        }
+    }
+
+    void DashStraight()
+    {
+        if (isFaceRight)
+        {
+            rb.AddForce(new Vector2(1, 0) * dashValue);
+        }
+        else
+        {
+            rb.AddForce(new Vector2(-1, 0) * dashValue);
+        }
+    }
+
 
     void ResolveFacing()
     {
@@ -202,7 +238,7 @@ public class CharacterController2D : MonoBehaviour
             isJumping = false;
             return;
         }
-
+        Debug.Log("isPressed");
         isJumping = true;
 
         if (gc.CanJump())
