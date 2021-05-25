@@ -20,6 +20,7 @@ public class CharacterController2D : MonoBehaviour
 
     int jumpCount;
     bool canWallJump = true;
+    public bool isJumping = false;
 
     int movement;
 
@@ -27,12 +28,16 @@ public class CharacterController2D : MonoBehaviour
     float movementSmoothing = .3f;
     Vector3 targetVelocity, lastVelocity = Vector3.zero;
 
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
+
     private void Start()
     {
         QualitySettings.vSyncCount = 0;
         Application.targetFrameRate = 1000;
         
-        rb = GetComponent<Rigidbody2D>();
         gc = GetComponentInChildren<GroundCheck>();
         wc = GetComponentInChildren<WallCheck>();
 
@@ -40,14 +45,20 @@ public class CharacterController2D : MonoBehaviour
 
     public void Move(InputAction.CallbackContext context)
     {
-        movement = (int) context.ReadValue<float>();
-        Debug.Log(movement);
+        movement = (int)context.ReadValue<float>();
+
+        if (!context.performed)
+            movement = 0;
+
         targetVelocity = new Vector2(movement * movementSpeed, rb.velocity.y);
         ResolveFacing();
     }
 
     public void ManageDash(InputAction.CallbackContext context)
     {
+        if (!context.performed)
+            return;
+
         if (rb.velocity.x > Mathf.Epsilon)
         {
             rb.AddForce(rb.velocity.normalized * dashValue);
@@ -84,6 +95,14 @@ public class CharacterController2D : MonoBehaviour
 
     public void ManageJump(InputAction.CallbackContext context)
     {
+        if (!context.performed)
+        {
+            isJumping = false;
+            return;
+        }
+
+        isJumping = true;
+
         if (gc.CanJump())
         {
             rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);

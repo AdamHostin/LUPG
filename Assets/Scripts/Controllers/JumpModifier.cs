@@ -28,7 +28,7 @@ public class JumpModifier : MonoBehaviour
         {
             rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime * rb.gravityScale;
         }
-        else if (rb.velocity.y  > 0 && !(controls.actions["Jump"].triggered))
+        else if (rb.velocity.y  > 0 && !player.isJumping)
         {
             rb.velocity += new Vector2(transform.up.x, transform.up.y) * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime * rb.gravityScale;
         }

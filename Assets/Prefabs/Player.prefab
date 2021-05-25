@@ -483,7 +483,7 @@ MonoBehaviour:
       - m_Target: {fileID: 7682539312270935195}
         m_TargetAssemblyTypeName: CharacterController2D, Assembly-CSharp
         m_MethodName: ManageJump
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -499,7 +499,7 @@ MonoBehaviour:
       - m_Target: {fileID: 7682539312270935195}
         m_TargetAssemblyTypeName: CharacterController2D, Assembly-CSharp
         m_MethodName: ManageDash
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
