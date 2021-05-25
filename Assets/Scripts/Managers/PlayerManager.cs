@@ -14,6 +14,8 @@ public class PlayerManager : MonoBehaviour
     List<PlayerHealth> clearPlayers = new List<PlayerHealth>();
     List<PlayerHealth> players = new List<PlayerHealth>();
 
+    int playerCount = 0;
+
     private void Awake()
     {
         App.playerManager = this;
@@ -83,4 +85,8 @@ public class PlayerManager : MonoBehaviour
 
     }
 
+    public int GetPlayerIndex()
+    {
+        return playerCount++;
+    }
 }

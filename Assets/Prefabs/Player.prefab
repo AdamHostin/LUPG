@@ -367,14 +367,15 @@ MonoBehaviour:
   doubleJumpCount: 1
   wallJumpInterval: 1
   dashValue: 200
-  dashType: 0
+  isDashStraight: 0
   dashBorder: 8
-  blockTime: 2
+  blockTime: 5
   timeBetweenBlocks: 2
-  smallRepulsionForce: 0
-  bigRepulsionForce: 0
-  jumpOnHeal: 0
-  jumpOnDamage: 0
+  smallRepulsionForce: 4
+  bigRepulsionForce: 10
+  jumpOnHeal: 30
+  jumpOnDamage: 10
+  dashType: 0
   isFaceRight: 1
   isJumping: 0
   canBlock: 1

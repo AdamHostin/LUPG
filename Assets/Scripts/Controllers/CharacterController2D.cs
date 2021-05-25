@@ -58,6 +58,8 @@ public class CharacterController2D : MonoBehaviour
         gc = GetComponentInChildren<GroundCheck>();
         wc = GetComponentInChildren<WallCheck>();
         playerHealth = GetComponent<PlayerHealth>();
+
+        playerIndex = App.playerManager.GetPlayerIndex();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -76,15 +78,16 @@ public class CharacterController2D : MonoBehaviour
                     playerHealth.SetHealth(targetHealth);
                     otherPlayerHealth.SetHealth(targetHealth);
                 }
+                else if (playerController.IsBlocked())
+                {
+                    Debug.Log("pow " + CalculateDirection(collision.gameObject.transform.position, transform.position));
+                    //One dashed one blocked
+                    Repulse(CalculateDirection(collision.gameObject.transform.position, transform.position), bigRepulsionForce);
+                }
                 else if (!playerController.IsDashed())
                 {
                     //One dashed
                     playerController.Repulse(CalculateDirection(transform.position, collision.gameObject.transform.position), bigRepulsionForce);
-                }
-                else if (playerController.IsBlocked())
-                {
-                    //One dashed one blocked
-                    Repulse(CalculateDirection(collision.gameObject.transform.position, transform.position), bigRepulsionForce);
                 }
             }
             else
@@ -94,7 +97,7 @@ public class CharacterController2D : MonoBehaviour
                     //The other blocks
                     Repulse(CalculateDirection(collision.gameObject.transform.position, transform.position), smallRepulsionForce);
                 }
-                else if (!playerController.IsBlocked() && !playerController.IsDashed() && playerIndex > playerController.GetPlayerIndex())
+                else if (!playerController.IsDashed() && playerIndex > playerController.GetPlayerIndex())
                 {
                     //Just run into each other
                     Repulse(CalculateDirection(collision.gameObject.transform.position, transform.position), smallRepulsionForce);
@@ -134,7 +137,6 @@ public class CharacterController2D : MonoBehaviour
             movement = 0;
 
         targetVelocityX = movement * movementSpeed;
-        Debug.Log(targetVelocity);
         ResolveFacing();
     }
 
@@ -270,12 +272,12 @@ public class CharacterController2D : MonoBehaviour
 
     IEnumerator ManageDashState()
     {
-        isDashed = true; Debug.Log("dash true");
+        isDashed = true;
 
         yield return new WaitForSeconds(0.25f);
         yield return new WaitUntil(() => Mathf.Abs(rb.velocity.x) < dashBorder);
 
-        isDashed = false; Debug.Log("dash false");
+        isDashed = false;
     }
 
     IEnumerator ManageBlockState()
