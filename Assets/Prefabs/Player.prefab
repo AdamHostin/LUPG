@@ -367,7 +367,19 @@ MonoBehaviour:
   doubleJumpCount: 1
   wallJumpInterval: 1
   dashValue: 100
+  dashType: 0
+  dashBorder: 0
+  blockTime: 0
+  timeBetweenBlocks: 0
+  smallRepulsionForce: 0
+  bigRepulsionForce: 0
+  jumpOnHeal: 0
+  jumpOnDamage: 0
   isFaceRight: 1
+  isJumping: 0
+  canBlock: 1
+  isBlocked: 0
+  isDashed: 0
 --- !u!114 &46052240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -511,7 +523,19 @@ MonoBehaviour:
     m_ActionId: 53cb5f07-3267-4a54-b4c7-e278ccc4d37f
     m_ActionName: Player/Dash[/Keyboard/shift,/DualShock4GamepadHID/buttonWest]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7682539312270935195}
+        m_TargetAssemblyTypeName: CharacterController2D, Assembly-CSharp
+        m_MethodName: ManageBlock
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 8bedd114-a939-4644-87f9-0c5160395716
     m_ActionName: Player/Block[/Keyboard/e,/DualShock4GamepadHID/buttonEast]
   m_NeverAutoSwitchControlSchemes: 0
