@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9013895375566820198}
   - component: {fileID: 5426466890454062896}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Path
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57,7 +57,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9013895375838437854}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Waypoint (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87,7 +87,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9013895376526049644}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Waypoint (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,7 +117,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9013895376529424119}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FlyingCollectibleSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -149,7 +149,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9013895376671933030}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Waypoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -180,7 +180,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9013895376756935663}
   - component: {fileID: 9013895376756935662}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CollectibleHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -230,7 +230,7 @@ GameObject:
   - component: {fileID: 9013895376833595888}
   - component: {fileID: 9013895376833595889}
   - component: {fileID: 9013895376833595891}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Collectible
   m_TagString: Collectible
   m_Icon: {fileID: 0}

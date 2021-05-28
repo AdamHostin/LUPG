@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2051851362}
   - component: {fileID: 2051851363}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 6514706448329927253}
   - component: {fileID: 7355869108164869594}
   - component: {fileID: 3716009225197669128}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: WallCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -167,7 +167,7 @@ GameObject:
   - component: {fileID: 7682539312059995976}
   - component: {fileID: 7682539312059995977}
   - component: {fileID: 195826488604010758}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -237,7 +237,7 @@ GameObject:
   - component: {fileID: 7682539312270935195}
   - component: {fileID: 46052240}
   - component: {fileID: 6589920627515302136}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -362,6 +362,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 20
+  movementSmoothing: 0.3
   jumpForce: 5
   doubleJumpCount: 1
   wallJumpInterval: 1
@@ -393,4 +394,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc47b332dc3569540ad369b8b3748d8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerName: 
   maxHealth: 100
+  health: 0
