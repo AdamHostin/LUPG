@@ -46,7 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6114f3c1ff00b894d951f63ecf9f3332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: {r: 0, g: 0, b: 0, a: 0}
+  color: {r: 0, g: 0, b: 0, a: 1}
+  sphereRadius: 1
 --- !u!1 &9013895375838437855
 GameObject:
   m_ObjectHideFlags: 0
