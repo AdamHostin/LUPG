@@ -237,6 +237,7 @@ GameObject:
   - component: {fileID: 7682539312270935195}
   - component: {fileID: 46052240}
   - component: {fileID: 6589920627515302136}
+  - component: {fileID: 4025450580822147035}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -366,8 +367,21 @@ MonoBehaviour:
   jumpForce: 5
   doubleJumpCount: 1
   wallJumpInterval: 1
-  dashValue: 100
+  dashValue: 200
+  isDashStraight: 0
+  dashBorder: 8
+  blockTime: 5
+  timeBetweenBlocks: 2
+  smallRepulsionForce: 4
+  bigRepulsionForce: 10
+  jumpOnHeal: 30
+  jumpOnDamage: 10
+  dashType: 0
   isFaceRight: 1
+  isJumping: 0
+  canBlock: 1
+  isBlocked: 0
+  isDashed: 0
 --- !u!114 &46052240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -397,3 +411,137 @@ MonoBehaviour:
   playerName: 
   maxHealth: 100
   health: 0
+--- !u!114 &4025450580822147035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7682539312270935270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: ff3e96771afa8aa48bc0eab9714dab7c, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7682539312270935195}
+        m_TargetAssemblyTypeName: CharacterController2D, Assembly-CSharp
+        m_MethodName: Move
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: d2156e12-0cf6-4b36-837e-fc099194e856
+    m_ActionName: Player/Move[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 54f9c6a3-612e-4e34-81cd-b75d65d90751
+    m_ActionName: UI/Navigate[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: df901e4b-5c73-4388-b745-c9ad612c8923
+    m_ActionName: UI/Submit[/Keyboard/enter]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 49bca1df-8ce2-4dec-9f95-662abc202a25
+    m_ActionName: UI/Cancel[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: bba68455-f137-406d-89a0-32e17b9d0c43
+    m_ActionName: UI/Point[/Mouse/position]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: eaef03c7-d87e-4769-b516-6d9a1b182b22
+    m_ActionName: UI/Click[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: b9ad6fd0-7227-4447-8b48-e9ec9134fc1e
+    m_ActionName: UI/ScrollWheel[/Mouse/scroll]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 58eacdb1-e54d-4d2e-9d58-b29480919c8b
+    m_ActionName: UI/MiddleClick[/Mouse/middleButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: de5019a6-b17a-4e7e-b060-8c942c6503a6
+    m_ActionName: UI/RightClick[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 6b99cc73-919d-48c0-8bd4-9a170b4d726e
+    m_ActionName: UI/TrackedDevicePosition
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: fe4d9f56-d6c9-49e9-ac58-28dd09cd3de6
+    m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7682539312270935195}
+        m_TargetAssemblyTypeName: CharacterController2D, Assembly-CSharp
+        m_MethodName: ManageJump
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 279f2229-73b8-4b86-9ff9-cb817b98facf
+    m_ActionName: Player/Jump[/Keyboard/space,/Keyboard/w,/DualShock4GamepadHID/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7682539312270935195}
+        m_TargetAssemblyTypeName: CharacterController2D, Assembly-CSharp
+        m_MethodName: ManageDash
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 53cb5f07-3267-4a54-b4c7-e278ccc4d37f
+    m_ActionName: Player/Dash[/Keyboard/shift,/DualShock4GamepadHID/buttonWest]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7682539312270935195}
+        m_TargetAssemblyTypeName: CharacterController2D, Assembly-CSharp
+        m_MethodName: ManageBlock
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 8bedd114-a939-4644-87f9-0c5160395716
+    m_ActionName: Player/Block[/Keyboard/e,/DualShock4GamepadHID/buttonEast]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}

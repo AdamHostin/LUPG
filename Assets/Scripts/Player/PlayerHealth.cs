@@ -11,7 +11,7 @@ public class PlayerHealth : MonoBehaviour
 
     [Header("Debug don't touch")]
     [SerializeField] int health;
-    // Start is called before the first frame update
+
     private void Start()
     {
         App.playerManager.AddPlayer(this);
@@ -34,5 +34,14 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
+    public int GetHealth()
+    {
+        return health;
+    }
+
+    public void SetHealth(int value)
+    {
+        health = value;
+    }
 }
 
