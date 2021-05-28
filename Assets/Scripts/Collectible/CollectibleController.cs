@@ -10,6 +10,7 @@ public class CollectibleController : MonoBehaviour
     public void DisableCollectible()
     {
         collectibleObject.SetActive(false);
+        StartCoroutine(ReenableCollectible());
     }
 
     IEnumerator ReenableCollectible()
