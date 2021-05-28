@@ -20,8 +20,6 @@ public class MovingCollectible : MonoBehaviour
     void Awake()
     {
         InitWaypoints();
-        transform.position = waypoints[0].position;
-        
     }
 
     void InitWaypoints()
@@ -37,6 +35,20 @@ public class MovingCollectible : MonoBehaviour
         {
             waypoints[i] = path.GetChild(i);
         }
+    }
+
+    private void OnEnable()
+    {
+        if (Random.Range(0f, 1f) < 0.5)
+        {
+            transform.position = waypoints[0].position;
+            currentWaypointIndex = 1;
+        }
+        else
+        {
+            transform.position = waypoints[waypoints.Length-1].position;
+            currentWaypointIndex = waypoints.Length - 2;
+        }        
     }
 
     int GetNextWaypointIndex()

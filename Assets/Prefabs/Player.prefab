@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 6514706448329927253}
   - component: {fileID: 7355869108164869594}
   - component: {fileID: 3716009225197669128}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: WallCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -167,7 +167,7 @@ GameObject:
   - component: {fileID: 7682539312059995976}
   - component: {fileID: 7682539312059995977}
   - component: {fileID: 195826488604010758}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
