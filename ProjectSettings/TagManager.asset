@@ -7,6 +7,8 @@ TagManager:
   - Jumpable
   - Ground
   - Wall
+  - Collectible
+  - HotCollectible
   layers:
   - Default
   - TransparentFX
@@ -14,8 +16,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - Collectible
+  - Player
   - 
   - 
   - 
