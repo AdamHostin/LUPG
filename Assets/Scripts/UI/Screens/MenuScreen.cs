@@ -24,12 +24,10 @@ public class MenuScreen : ScreenBase
 
     public void PlayButtonClicked()
     {
-        //App.audioManager.Play("UIButtonClicked");
-        App.gameManager.StartLoadingFirstScene();
-        //App.gameManager.ReInitPlayer();
         App.screenManager.Hide<MenuScreen>();
-        Time.timeScale = 1;
+        App.screenManager.Show<LobbyScreen>();
         //StartCoroutine(App.audioManager.PlayAmbient());
+        //App.audioManager.Play("UIButtonClicked");
     }
 
     public void TestLevelButtonClicked()

@@ -46,9 +46,13 @@ public class CharacterController2D : MonoBehaviour
 
     int playerIndex = 0;
 
+    PlayerInput playerInput;
+    PlayerAvatar playerAvatar;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        playerInput = GetComponent<PlayerInput>();
     }
 
     private void Start()
@@ -59,6 +63,10 @@ public class CharacterController2D : MonoBehaviour
         gc = GetComponentInChildren<GroundCheck>();
         wc = GetComponentInChildren<WallCheck>();
         playerHealth = GetComponent<PlayerHealth>();
+
+        playerAvatar = App.lobbyScreen.GetAvatar();
+        if (playerAvatar == null)
+            Destroy(gameObject);
 
         playerIndex = App.playerManager.GetPlayerIndex();
     }
@@ -316,5 +324,41 @@ public class CharacterController2D : MonoBehaviour
     {
         targetVelocity = new Vector2(targetVelocityX, rb.velocity.y);
         rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref lastVelocity, movementSmoothing);
+    }
+
+    public void TogglePlayerInput(bool value)
+    {
+        playerInput.enabled = value;
+    }
+
+    public void ChooseCharacter(InputAction.CallbackContext context)
+    {
+        if (!context.performed)
+            return; 
+
+        if (App.lobbyScreen.CanChoose())
+        {
+            if ((int) context.ReadValue<float>() > 0)
+            {
+                playerAvatar.IncrementImage();
+            }
+            else
+            {
+                playerAvatar.DecrementImage();
+            }
+        }
+    }
+
+    public void ReadyUp(InputAction.CallbackContext context)
+    {
+        if (App.lobbyScreen.CanChoose())
+        {
+            playerAvatar.ToggleReady();
+        }
+    }
+
+    public void Delete()
+    {
+        Destroy(gameObject);
     }
 }
