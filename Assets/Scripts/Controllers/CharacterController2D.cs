@@ -46,14 +46,9 @@ public class CharacterController2D : MonoBehaviour
 
     int playerIndex = 0;
 
-    PlayerInput playerInput;
-    PlayerAvatar playerAvatar;
-    int avatarIndex;
-
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        playerInput = GetComponent<PlayerInput>();
     }
 
     private void Start()
@@ -64,10 +59,6 @@ public class CharacterController2D : MonoBehaviour
         gc = GetComponentInChildren<GroundCheck>();
         wc = GetComponentInChildren<WallCheck>();
         playerHealth = GetComponent<PlayerHealth>();
-
-        playerAvatar = App.lobbyScreen.GetAvatar(this);
-        if (playerAvatar == null)
-            Destroy(gameObject);
 
         playerIndex = App.playerManager.GetPlayerIndex();
     }
@@ -141,6 +132,9 @@ public class CharacterController2D : MonoBehaviour
 
     public void Move(InputAction.CallbackContext context)
     {
+        if (!App.screenManager.CompareGameState(GameState.running))
+            return;
+
         movement = (int)context.ReadValue<float>();
 
         if (!context.performed)
@@ -152,7 +146,7 @@ public class CharacterController2D : MonoBehaviour
 
     public void ManageDash(InputAction.CallbackContext context)
     {
-        if (!context.performed)
+        if (!App.screenManager.CompareGameState(GameState.running) || !context.performed)
             return;
 
         if (!isBlocked)
@@ -233,7 +227,7 @@ public class CharacterController2D : MonoBehaviour
 
     public void ManageBlock(InputAction.CallbackContext context)
     {
-        if (!context.performed)
+        if (!App.screenManager.CompareGameState(GameState.running) || !context.performed)
             return;
 
         if (!isDashed && canBlock)
@@ -245,6 +239,9 @@ public class CharacterController2D : MonoBehaviour
 
     public void ManageJump(InputAction.CallbackContext context)
     {
+        if (!App.screenManager.CompareGameState(GameState.running))
+            return;
+
         if (!context.performed)
         {
             isJumping = false;
@@ -321,46 +318,10 @@ public class CharacterController2D : MonoBehaviour
         return isBlocked;
     }
 
-    public void SetAvatarIndex(int index)
-    {
-        avatarIndex = index;
-    }
-
     private void FixedUpdate()
     {
         targetVelocity = new Vector2(targetVelocityX, rb.velocity.y);
         rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref lastVelocity, movementSmoothing);
-    }
-
-    public void TogglePlayerInput(bool value)
-    {
-        playerInput.enabled = value;
-    }
-
-    public void ChooseCharacter(InputAction.CallbackContext context)
-    {
-        if (!context.performed)
-            return; 
-
-        if (App.lobbyScreen.CanChoose())
-        {
-            if ((int) context.ReadValue<float>() > 0)
-            {
-                playerAvatar.IncrementImage();
-            }
-            else
-            {
-                playerAvatar.DecrementImage();
-            }
-        }
-    }
-
-    public void ReadyUp(InputAction.CallbackContext context)
-    {
-        if (App.lobbyScreen.CanChoose())
-        {
-            playerAvatar.ToggleReady();
-        }
     }
 
     public void Delete()

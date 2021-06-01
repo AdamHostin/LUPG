@@ -19,6 +19,7 @@ public class LobbyScreen : ScreenBase
         ResetAvatars();
         App.inputManager.EnableJoining();
         canChoose = true;
+        App.screenManager.SetGameState(GameState.lobby);
     }
 
     public override void Hide()
@@ -56,13 +57,13 @@ public class LobbyScreen : ScreenBase
         App.screenManager.Show<MenuScreen>();
     }
 
-    public PlayerAvatar GetAvatar(CharacterController2D playerController)
+    public PlayerAvatar GetAvatar(AvatarController avatarController)
     {
         foreach (PlayerAvatar player in players)
         {
             if (!player.IsOccupied())
             {
-                player.SetOccupation(playerController);
+                player.SetOccupation(avatarController);
                 return player;
             }
         }

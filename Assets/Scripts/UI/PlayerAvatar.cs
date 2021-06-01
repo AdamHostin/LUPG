@@ -15,7 +15,7 @@ public class PlayerAvatar : MonoBehaviour
     [SerializeField] Sprite idleSprite;
 
     bool isReady = false;
-    CharacterController2D playerController;
+    AvatarController avatarController;
 
     CheckBox checkBox;
 
@@ -30,17 +30,17 @@ public class PlayerAvatar : MonoBehaviour
         ResetImage();
     }
 
-    public void SetOccupation(CharacterController2D playerController)
+    public void SetOccupation(AvatarController avatarController)
     {
         isOccupied = true;
         image.sprite = sprites[pictureIndex];
-        this.playerController = playerController;
+        this.avatarController = avatarController;
     }
 
     public void DeleteOccupation()
     {
         isOccupied = false;
-        playerController = null;
+        avatarController = null;
         SetReady(false);
         ResetImage();
     }
@@ -91,6 +91,6 @@ public class PlayerAvatar : MonoBehaviour
 
     public void SendAvatarIndex()
     {
-        playerController.SetAvatarIndex(pictureIndex);
+        avatarController.SetAvatarIndex(pictureIndex);
     }
 }

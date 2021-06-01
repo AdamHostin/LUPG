@@ -50,6 +50,16 @@ public class ScreenManager : MonoBehaviour
         this.gameState = gameState;
     }
 
+    public GameState GetGameState()
+    {
+        return gameState;
+    }
+
+    public bool CompareGameState(GameState gameState)
+    {
+        return gameState == this.gameState;
+    }
+
     /*
     private void PauseMenuScreenSwitch()
     {

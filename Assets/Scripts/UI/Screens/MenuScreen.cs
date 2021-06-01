@@ -17,7 +17,6 @@ public class MenuScreen : ScreenBase
 
     public override void Hide()
     {
-        App.screenManager.SetGameState(GameState.running);
         //App.audioManager.Stop("MenuSound");
         base.Hide();
     }
