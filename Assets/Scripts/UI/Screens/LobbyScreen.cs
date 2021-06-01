@@ -24,24 +24,45 @@ public class LobbyScreen : ScreenBase
     public override void Hide()
     {
         canChoose = false;
-        App.playerManager.DeletePlayers();
         App.inputManager.DisableJoining();
         base.Hide();
     }
 
+    public void StartButtonClicked()
+    {
+        bool canStart = true;
+        foreach (PlayerAvatar player in players)
+        {
+            if (player.IsOccupied() && !player.IsReady())
+                canStart = false;
+        }
+        
+        if (canStart)
+        {
+            SendIndexes();
+            Hide();
+            //App.gameManager.StartSceneLoading("MovementTestingScene");
+        }
+        else
+        {
+            Debug.LogWarning("Lobby empty");
+        }
+    }
+
     public void BackButtonClicked()
     {
+        App.playerManager.DeletePlayers();
         Hide();
         App.screenManager.Show<MenuScreen>();
     }
 
-    public PlayerAvatar GetAvatar()
+    public PlayerAvatar GetAvatar(CharacterController2D playerController)
     {
         foreach (PlayerAvatar player in players)
         {
             if (!player.IsOccupied())
             {
-                player.SetOccupation();
+                player.SetOccupation(playerController);
                 return player;
             }
         }
@@ -61,5 +82,16 @@ public class LobbyScreen : ScreenBase
     public bool CanChoose()
     {
         return canChoose;
+    }
+
+    void SendIndexes()
+    {
+        foreach (PlayerAvatar player in players)
+        {
+            if (player.IsOccupied())
+            {
+                player.SendAvatarIndex();
+            }
+        }
     }
 }

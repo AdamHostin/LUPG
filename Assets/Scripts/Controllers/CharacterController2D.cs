@@ -48,6 +48,7 @@ public class CharacterController2D : MonoBehaviour
 
     PlayerInput playerInput;
     PlayerAvatar playerAvatar;
+    int avatarIndex;
 
     private void Awake()
     {
@@ -64,7 +65,7 @@ public class CharacterController2D : MonoBehaviour
         wc = GetComponentInChildren<WallCheck>();
         playerHealth = GetComponent<PlayerHealth>();
 
-        playerAvatar = App.lobbyScreen.GetAvatar();
+        playerAvatar = App.lobbyScreen.GetAvatar(this);
         if (playerAvatar == null)
             Destroy(gameObject);
 
@@ -318,6 +319,11 @@ public class CharacterController2D : MonoBehaviour
     public bool IsBlocked()
     {
         return isBlocked;
+    }
+
+    public void SetAvatarIndex(int index)
+    {
+        avatarIndex = index;
     }
 
     private void FixedUpdate()

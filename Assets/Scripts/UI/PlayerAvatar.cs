@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class PlayerAvatar : MonoBehaviour
 {
-    private Image image;
+    [SerializeField] Image image;
 
     private bool isOccupied = false;
     private int pictureIndex = 0;
@@ -15,10 +15,13 @@ public class PlayerAvatar : MonoBehaviour
     [SerializeField] Sprite idleSprite;
 
     bool isReady = false;
+    CharacterController2D playerController;
+
+    CheckBox checkBox;
 
     private void Awake()
     {
-        image = GetComponentInChildren<Image>();
+        checkBox = GetComponentInChildren<CheckBox>();
     }
 
     private void Start()
@@ -27,15 +30,18 @@ public class PlayerAvatar : MonoBehaviour
         ResetImage();
     }
 
-    public void SetOccupation()
+    public void SetOccupation(CharacterController2D playerController)
     {
         isOccupied = true;
         image.sprite = sprites[pictureIndex];
+        this.playerController = playerController;
     }
 
     public void DeleteOccupation()
     {
         isOccupied = false;
+        playerController = null;
+        SetReady(false);
         ResetImage();
     }
 
@@ -46,7 +52,6 @@ public class PlayerAvatar : MonoBehaviour
 
     public void IncrementImage()
     {
-        Debug.Log("increment");
         pictureIndex++;
         if (pictureIndex == sprites.Length)
             pictureIndex = 0;
@@ -55,7 +60,6 @@ public class PlayerAvatar : MonoBehaviour
 
     public void DecrementImage()
     {
-        Debug.Log("decrement");
         pictureIndex--;
         if (pictureIndex < 0)
             pictureIndex = sprites.Length - 1;
@@ -73,8 +77,20 @@ public class PlayerAvatar : MonoBehaviour
         return isReady;
     }
 
+    public void SetReady(bool value)
+    {
+        isReady = value;
+        checkBox.SetReady(isReady);
+    }
+
     public void ToggleReady()
     {
         isReady = !isReady;
+        checkBox.SetReady(isReady);
+    }
+
+    public void SendAvatarIndex()
+    {
+        playerController.SetAvatarIndex(pictureIndex);
     }
 }
