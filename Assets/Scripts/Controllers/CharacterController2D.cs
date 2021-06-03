@@ -23,6 +23,8 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] DashType dashType;
     [Header("Debug don't touch")]
     [SerializeField] bool isFaceRight = true;
+    [Tooltip("Let it go")]
+    [SerializeField] bool isFrozen = false;
     Rigidbody2D rb;
     GroundCheck gc;
     WallCheck wc;
@@ -134,7 +136,7 @@ public class CharacterController2D : MonoBehaviour
     {
         movement = (int)context.ReadValue<float>();
 
-        if (!context.performed)
+        if (!context.performed || isFrozen)
             movement = 0;
 
         targetVelocityX = movement * movementSpeed;
@@ -143,7 +145,7 @@ public class CharacterController2D : MonoBehaviour
 
     public void ManageDash(InputAction.CallbackContext context)
     {
-        if (!context.performed)
+        if (!context.performed || isFrozen)
             return;
 
         if (!isBlocked)
@@ -224,7 +226,7 @@ public class CharacterController2D : MonoBehaviour
 
     public void ManageBlock(InputAction.CallbackContext context)
     {
-        if (!context.performed)
+        if (!context.performed || isFrozen)
             return;
 
         if (!isDashed && canBlock)
@@ -236,7 +238,7 @@ public class CharacterController2D : MonoBehaviour
 
     public void ManageJump(InputAction.CallbackContext context)
     {
-        if (!context.performed)
+        if (!context.performed || isFrozen)
         {
             isJumping = false;
             return;
@@ -310,6 +312,20 @@ public class CharacterController2D : MonoBehaviour
     public bool IsBlocked()
     {
         return isBlocked;
+    }
+
+    public void Freeze(float freezeTime)
+    {
+        StartCoroutine(FreezeCoroutine(freezeTime));
+    }
+
+    public IEnumerator FreezeCoroutine(float freezeTime)
+    {
+        isFrozen = true;
+        Debug.Log("Freeze");
+        yield return new WaitForSeconds(freezeTime);
+        Debug.Log("unFreeze");
+        isFrozen = false;
     }
 
     private void FixedUpdate()

@@ -378,6 +378,7 @@ MonoBehaviour:
   jumpOnDamage: 10
   dashType: 0
   isFaceRight: 1
+  isFrozen: 0
   isJumping: 0
   canBlock: 1
   isBlocked: 0
@@ -408,8 +409,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc47b332dc3569540ad369b8b3748d8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerName: 
-  maxHealth: 100
+  playerName: A
+  maxHealth: 90
   health: 0
 --- !u!114 &4025450580822147035
 MonoBehaviour:
