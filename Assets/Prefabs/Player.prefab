@@ -374,6 +374,8 @@ MonoBehaviour:
   timeBetweenBlocks: 2
   smallRepulsionForce: 4
   bigRepulsionForce: 10
+  BoostHight: 40
+  BoostTime: 5
   jumpOnHeal: 30
   jumpOnDamage: 10
   dashType: 0

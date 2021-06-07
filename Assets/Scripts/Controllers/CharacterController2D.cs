@@ -18,6 +18,8 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] float timeBetweenBlocks;
     [SerializeField] float smallRepulsionForce;
     [SerializeField] float bigRepulsionForce;
+    [SerializeField] float BoostHight;
+    [SerializeField] float BoostTime;
     [SerializeField] int jumpOnHeal;
     [SerializeField] int jumpOnDamage;
     [SerializeField] DashType dashType;
@@ -318,7 +320,10 @@ public class CharacterController2D : MonoBehaviour
     {
         StartCoroutine(FreezeCoroutine(freezeTime));
     }
-
+    public void Boost()
+    {
+        StartCoroutine(BoostCoroutine());
+    }
     public IEnumerator FreezeCoroutine(float freezeTime)
     {
         isFrozen = true;
@@ -326,6 +331,14 @@ public class CharacterController2D : MonoBehaviour
         yield return new WaitForSeconds(freezeTime);
         Debug.Log("unFreeze");
         isFrozen = false;
+    }
+    public IEnumerator BoostCoroutine()
+    {
+       
+        movementSpeed = BoostHight;
+
+        yield return new WaitForSeconds(BoostTime);
+        movementSpeed = 20;
     }
 
     private void FixedUpdate()
