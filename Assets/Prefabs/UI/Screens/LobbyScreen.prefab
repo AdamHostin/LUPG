@@ -269,6 +269,7 @@ MonoBehaviour:
   - {fileID: 5729119500866119662}
   - {fileID: 1070226221923551224}
   - {fileID: 2214690009069484407}
+  sceneToLoad: MovementTestingScene
 --- !u!1 &2664890789758775171
 GameObject:
   m_ObjectHideFlags: 0

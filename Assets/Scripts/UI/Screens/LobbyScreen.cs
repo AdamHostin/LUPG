@@ -5,6 +5,7 @@ using UnityEngine;
 public class LobbyScreen : ScreenBase
 {
     public PlayerAvatar[] players = new PlayerAvatar[4];
+    [SerializeField] string sceneToLoad;
 
     bool canChoose = false;
 
@@ -42,7 +43,7 @@ public class LobbyScreen : ScreenBase
         {
             SendIndexes();
             Hide();
-            //App.gameManager.StartSceneLoading("MovementTestingScene");
+            App.gameManager.StartSceneLoading(sceneToLoad);
         }
         else
         {
