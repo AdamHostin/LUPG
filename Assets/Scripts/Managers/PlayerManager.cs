@@ -105,4 +105,15 @@ public class PlayerManager : MonoBehaviour
     {
         return playerAvatars;
     }
+
+    public void SpawnPlayers(SpawnPoints spawnPoints)
+    {
+        spawnPoints.ResetSpawnPoints();
+
+        foreach (PlayerHealth player in players)
+        {
+            player.gameObject.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+            player.gameObject.transform.position = spawnPoints.GetRandomSpawnPosition();
+        }
+    }
 }
