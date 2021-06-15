@@ -12,7 +12,8 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] int doubleJumpCount;
     [SerializeField] float wallJumpInterval;
     [SerializeField] float dashValue;
-    [SerializeField] bool isDashStraight;
+    [SerializeField] int dashCount;
+    [SerializeField] float dashCooldown;
     [SerializeField] float dashBorder;
     [SerializeField] float blockTime;
     [SerializeField] float timeBetweenBlocks;
@@ -145,7 +146,8 @@ public class CharacterController2D : MonoBehaviour
     {
         if (!context.performed)
             return;
-
+        if (dashCount - 1 < 0) return;
+        
         if (!isBlocked)
         {
 
@@ -163,9 +165,18 @@ public class CharacterController2D : MonoBehaviour
                 default:
                     break;
             }
-            
+            StartCoroutine(DashCooldown());
         }
         StartCoroutine(ManageDashState());
+        
+    }
+
+    IEnumerator DashCooldown()
+    {
+        dashCount--;
+        //TODO: create bar for visualisation
+        yield return new WaitForSeconds(dashCooldown);
+        dashCount++;
     }
 
     void DashWithHight()
