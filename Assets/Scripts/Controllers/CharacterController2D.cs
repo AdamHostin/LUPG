@@ -37,7 +37,7 @@ public class CharacterController2D : MonoBehaviour
     bool canWallJump = true;
     public bool isJumping = false;
 
-    int movement;
+    [SerializeField] int movement;
 
 
     
@@ -316,21 +316,24 @@ public class CharacterController2D : MonoBehaviour
         return isBlocked;
     }
 
-    public void Freeze(float freezeTime)
+    public void Freeze(float freezeTime, float freezeSmoothing)
     {
-        StartCoroutine(FreezeCoroutine(freezeTime));
+        StartCoroutine(FreezeCoroutine(freezeTime, freezeSmoothing));
     }
     public void Boost()
     {
         StartCoroutine(BoostCoroutine());
     }
-    public IEnumerator FreezeCoroutine(float freezeTime)
+    public IEnumerator FreezeCoroutine(float freezeTime, float freezeSmoothing)
     {
+        float storedSmooth = movementSmoothing;
+
         isFrozen = true;
-        Debug.Log("Freeze");
+        targetVelocityX = 0f;
+        movementSmoothing = freezeSmoothing;
         yield return new WaitForSeconds(freezeTime);
-        Debug.Log("unFreeze");
         isFrozen = false;
+        movementSmoothing = storedSmooth;
     }
     public IEnumerator BoostCoroutine()
     {

@@ -5,6 +5,7 @@ using UnityEngine;
 public class FreezeCollectibleBehaviour : MonoBehaviour
 {
     [SerializeField] float freezeTime;
+    [SerializeField] float freezeSmoothing;
 
     [Header("Dont touch")]
     [SerializeField] CollectibleController collectibleController;
@@ -14,7 +15,7 @@ public class FreezeCollectibleBehaviour : MonoBehaviour
         if (collision.tag != "Player") return;
         
         Debug.Log("Freeze collected");
-        collision.gameObject.GetComponent<CharacterController2D>().Freeze(freezeTime);
+        collision.gameObject.GetComponent<CharacterController2D>().Freeze(freezeTime,freezeSmoothing);
         collectibleController.DisableCollectible();
 
             
