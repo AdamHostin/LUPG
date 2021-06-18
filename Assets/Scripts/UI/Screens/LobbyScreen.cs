@@ -44,6 +44,7 @@ public class LobbyScreen : ScreenBase
             SendIndexes();
             Hide();
             App.gameManager.StartSceneLoading(sceneToLoad);
+            App.screenManager.SetGameState(GameState.running);
         }
         else
         {
