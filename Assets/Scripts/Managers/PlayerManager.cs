@@ -12,7 +12,7 @@ public class PlayerManager : MonoBehaviour
     Queue<string> playerOrder = new Queue<string>();
 
     List<PlayerHealth> clearPlayers = new List<PlayerHealth>();
-    List<PlayerHealth> players = new List<PlayerHealth>();
+    public List<PlayerHealth> players = new List<PlayerHealth>();
 
     int playerCount = 0;
 
@@ -88,5 +88,15 @@ public class PlayerManager : MonoBehaviour
     public int GetPlayerIndex()
     {
         return playerCount++;
+    }
+
+    public int GetPlayerCount()
+    {
+        return playerCount;
+    }
+
+    public PlayerHealth GetPlayerByIndex(int index)
+    {
+        return players[index];
     }
 }
