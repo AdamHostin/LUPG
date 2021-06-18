@@ -320,9 +320,9 @@ public class CharacterController2D : MonoBehaviour
     {
         StartCoroutine(FreezeCoroutine(freezeTime, freezeSmoothing));
     }
-    public void Boost()
+    public void Boost(float boostSpeed,float boostTime)
     {
-        StartCoroutine(BoostCoroutine());
+        StartCoroutine(BoostCoroutine( boostSpeed,  boostTime));
     }
     public IEnumerator FreezeCoroutine(float freezeTime, float freezeSmoothing)
     {
@@ -335,13 +335,13 @@ public class CharacterController2D : MonoBehaviour
         isFrozen = false;
         movementSmoothing = storedSmooth;
     }
-    public IEnumerator BoostCoroutine()
+    public IEnumerator BoostCoroutine(float boostSpeed, float boostTime)
     {
-       
-        movementSpeed = BoostHight;
+        float storedSpeed = movementSpeed;
+        movementSpeed = boostSpeed;
 
-        yield return new WaitForSeconds(BoostTime);
-        movementSpeed = 20;
+        yield return new WaitForSeconds(boostTime);
+        movementSpeed = storedSpeed;
     }
 
     private void FixedUpdate()
