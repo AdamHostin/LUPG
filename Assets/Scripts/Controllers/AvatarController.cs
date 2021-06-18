@@ -8,6 +8,8 @@ public class AvatarController : MonoBehaviour
     PlayerAvatar playerAvatar;
     int avatarIndex;
 
+    bool canChoose = true;
+
     private void Start()
     {
         playerAvatar = App.lobbyScreen.GetAvatar(this);
@@ -17,7 +19,7 @@ public class AvatarController : MonoBehaviour
 
     public void ChooseCharacter(InputAction.CallbackContext context)
     {
-        if (!App.screenManager.CompareGameState(GameState.lobby) || !context.performed)
+        if (!App.screenManager.CompareGameState(GameState.lobby) || !context.performed || !canChoose)
             return;
 
         if (App.lobbyScreen.CanChoose())
@@ -41,6 +43,7 @@ public class AvatarController : MonoBehaviour
         if (App.lobbyScreen.CanChoose())
         {
             playerAvatar.ToggleReady();
+            canChoose = !canChoose;
         }
     }
 
