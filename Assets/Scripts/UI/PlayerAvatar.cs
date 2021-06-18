@@ -93,4 +93,9 @@ public class PlayerAvatar : MonoBehaviour
     {
         avatarController.SetAvatarIndex(pictureIndex);
     }
+
+    public Sprite GetCurrentAvatar()
+    {
+        return sprites[pictureIndex];
+    }
 }

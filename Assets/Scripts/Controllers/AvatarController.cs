@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class AvatarController : MonoBehaviour
 {
+    PlayerHealth playerHealth;
     PlayerAvatar playerAvatar;
     int avatarIndex;
 
@@ -12,6 +13,7 @@ public class AvatarController : MonoBehaviour
 
     private void Start()
     {
+        playerHealth = GetComponent<PlayerHealth>();
         playerAvatar = App.lobbyScreen.GetAvatar(this);
         if (playerAvatar == null)
             Destroy(gameObject);
@@ -44,6 +46,7 @@ public class AvatarController : MonoBehaviour
         {
             playerAvatar.ToggleReady();
             canChoose = !canChoose;
+            playerHealth.SetAvatar(playerAvatar.GetCurrentAvatar());
         }
     }
 
