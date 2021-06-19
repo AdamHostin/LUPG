@@ -99,8 +99,8 @@ public class BarController : MonoBehaviour
         }        
     }
 
-    public void SetImage(Image image)
+    public void SetImage(Sprite image)
     {
-        this.image = image;
+        this.image.sprite = image;
     }
 }

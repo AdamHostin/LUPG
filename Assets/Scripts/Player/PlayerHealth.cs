@@ -14,7 +14,6 @@ public class PlayerHealth : MonoBehaviour
     [Header("Debug don't touch")]
     [SerializeField] int health;
     [SerializeField] BarController hpBar;
-    [SerializeField] Image image;
 
 
     private void Start()
@@ -37,7 +36,7 @@ public class PlayerHealth : MonoBehaviour
 
         if (health <= 0)
         {
-            App.playerManager.EnqueuePlayer(this, playerName);
+            App.playerManager.EnqueuePlayer(this, avatar);
         }
         hpBar?.OnUIUpdate((float)health / (float)maxHealth);
     }
@@ -56,13 +55,21 @@ public class PlayerHealth : MonoBehaviour
     {
         hpBar = bar;
         hpBar.OnUIUpdate((float)health/ (float)maxHealth);
+        hpBar.SetImage(avatar);
     }
-        hpBar.SetImage(image);
+        
 
 
     public void SetAvatar(Sprite avatar)
     {
         this.avatar = avatar;
+        if (hpBar != null) hpBar.SetImage(avatar);
+        Debug.Log("Has spprite");
+    }
+
+    public Sprite GetAvatar()
+    {
+        return avatar;
     }
 }
 
