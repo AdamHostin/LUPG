@@ -8,6 +8,11 @@ public class RisingWater : MonoBehaviour
     [SerializeField] float yEndPosition;
     [SerializeField] float waterSpeed;
 
+    private void Start()
+    {
+        StartWaterCountdown();
+    }
+
     public void StartWaterCountdown()
     {
         StartCoroutine(RiseWater());
@@ -19,7 +24,9 @@ public class RisingWater : MonoBehaviour
 
         while (transform.position.y < yEndPosition)
         {
-            transform.Translate(Vector3.up * Time.deltaTime * waterSpeed, Space.World);
+            transform.Translate(Vector3.up * Time.deltaTime * waterSpeed);
+            Debug.Log("wait");
+            yield return new WaitForFixedUpdate();
         }
     }
 
