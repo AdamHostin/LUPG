@@ -15,7 +15,6 @@ public class InGameScreen : ScreenBase
     {
         App.screenManager.SetGameState(GameState.running);
         base.Show();
-
     }
 
     public override void Hide()

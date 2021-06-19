@@ -133,6 +133,9 @@ public class CharacterController2D : MonoBehaviour
 
     public void Move(InputAction.CallbackContext context)
     {
+        if (!App.screenManager.CompareGameState(GameState.running))
+            return;
+
         movement = (int)context.ReadValue<float>();
 
         if (!context.performed)
@@ -144,7 +147,7 @@ public class CharacterController2D : MonoBehaviour
 
     public void ManageDash(InputAction.CallbackContext context)
     {
-        if (!context.performed)
+        if (!App.screenManager.CompareGameState(GameState.running) || !context.performed)
             return;
         if (dashCount - 1 < 0) return;
         
@@ -235,7 +238,7 @@ public class CharacterController2D : MonoBehaviour
 
     public void ManageBlock(InputAction.CallbackContext context)
     {
-        if (!context.performed)
+        if (!App.screenManager.CompareGameState(GameState.running) || !context.performed)
             return;
 
         if (!isDashed && canBlock)
@@ -247,6 +250,9 @@ public class CharacterController2D : MonoBehaviour
 
     public void ManageJump(InputAction.CallbackContext context)
     {
+        if (!App.screenManager.CompareGameState(GameState.running))
+            return;
+
         if (!context.performed)
         {
             isJumping = false;
@@ -327,5 +333,10 @@ public class CharacterController2D : MonoBehaviour
     {
         targetVelocity = new Vector2(targetVelocityX, rb.velocity.y);
         rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref lastVelocity, movementSmoothing);
+    }
+
+    public void Delete()
+    {
+        Destroy(gameObject);
     }
 }

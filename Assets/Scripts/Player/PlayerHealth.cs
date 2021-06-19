@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
+    [SerializeField] Sprite avatar;
     public string playerName;
 
     [SerializeField] int maxHealth;
@@ -55,12 +56,13 @@ public class PlayerHealth : MonoBehaviour
     {
         hpBar = bar;
         hpBar.OnUIUpdate((float)health/ (float)maxHealth);
-        hpBar.SetImage(image);
     }
+        hpBar.SetImage(image);
 
-    public void SetImage(Image image)
+
+    public void SetAvatar(Sprite avatar)
     {
-        this.image = image;
+        this.avatar = avatar;
     }
 }
 

@@ -18,7 +18,7 @@ public class ScreenManager : MonoBehaviour
 
     private void Update()
     {
-        PauseMenuScreenSwitch();
+        //PauseMenuScreenSwitch();
     }
 
     public void Show<T>()
@@ -50,6 +50,17 @@ public class ScreenManager : MonoBehaviour
         this.gameState = gameState;
     }
 
+    public GameState GetGameState()
+    {
+        return gameState;
+    }
+
+    public bool CompareGameState(GameState gameState)
+    {
+        return gameState == this.gameState;
+    }
+
+    /*
     private void PauseMenuScreenSwitch()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -60,6 +71,7 @@ public class ScreenManager : MonoBehaviour
                 Hide<PauseMenuScreen>();
         }
     }
+    */
 
     //Funkcia pre button v PauseMenuScreene
     public void HidePauseScreen()
