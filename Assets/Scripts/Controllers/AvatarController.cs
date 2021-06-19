@@ -10,6 +10,7 @@ public class AvatarController : MonoBehaviour
     int avatarIndex;
 
     bool canChoose = true;
+    bool hasMoved = false;
 
     private void Start()
     {
@@ -21,20 +22,30 @@ public class AvatarController : MonoBehaviour
 
     public void ChooseCharacter(InputAction.CallbackContext context)
     {
-        if (!App.screenManager.CompareGameState(GameState.lobby) || !context.performed || !canChoose)
+        if (!context.performed || !canChoose || context.started)
             return;
 
-        if (App.lobbyScreen.CanChoose())
+        int value = Mathf.RoundToInt(context.ReadValue<float>() / 2f);
+        
+        if (value == 0)
         {
-            if ((int)context.ReadValue<float>() > 0)
-            {
-                playerAvatar.IncrementImage();
-            }
-            else
-            {
-                playerAvatar.DecrementImage();
-            }
+            hasMoved = false;
         }
+
+        Debug.Log(hasMoved);
+        if (hasMoved)
+            return;
+
+        if (value > 0)
+        {
+            playerAvatar.IncrementImage();
+        }
+        else
+        {
+            playerAvatar.DecrementImage();
+        }
+
+        hasMoved = true;
     }
 
     public void ReadyUp(InputAction.CallbackContext context)

@@ -9,7 +9,7 @@ public class PlayerAvatar : MonoBehaviour
     [SerializeField] Image image;
 
     private bool isOccupied = false;
-    private int pictureIndex = 0;
+    [SerializeField] private int pictureIndex = 0;
     Sprite[] sprites;
 
     [SerializeField] Sprite idleSprite;
@@ -97,5 +97,10 @@ public class PlayerAvatar : MonoBehaviour
     public Sprite GetCurrentAvatar()
     {
         return sprites[pictureIndex];
+    }
+
+    public int GetPictureIndex()
+    {
+        return pictureIndex;
     }
 }

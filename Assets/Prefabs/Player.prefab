@@ -239,6 +239,7 @@ GameObject:
   - component: {fileID: 6589920627515302136}
   - component: {fileID: 4025450580822147035}
   - component: {fileID: 2687707568072961150}
+  - component: {fileID: 620211152909329922}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -409,6 +410,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc47b332dc3569540ad369b8b3748d8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  avatar: {fileID: 0}
   playerName: 
   maxHealth: 100
   health: 0
@@ -439,8 +441,8 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7682539312270935195}
-        m_TargetAssemblyTypeName: CharacterController2D, Assembly-CSharp
+      - m_Target: {fileID: 620211152909329922}
+        m_TargetAssemblyTypeName: ActionDecider, Assembly-CSharp
         m_MethodName: Move
         m_Mode: 0
         m_Arguments:
@@ -495,9 +497,9 @@ MonoBehaviour:
     m_ActionName: UI/TrackedDeviceOrientation
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7682539312270935195}
-        m_TargetAssemblyTypeName: CharacterController2D, Assembly-CSharp
-        m_MethodName: ManageJump
+      - m_Target: {fileID: 620211152909329922}
+        m_TargetAssemblyTypeName: ActionDecider, Assembly-CSharp
+        m_MethodName: Jump
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -543,8 +545,8 @@ MonoBehaviour:
     m_ActionName: Player/Block[/Keyboard/e,/DualShock4GamepadHID/buttonEast]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2687707568072961150}
-        m_TargetAssemblyTypeName: AvatarController, Assembly-CSharp
+      - m_Target: {fileID: 620211152909329922}
+        m_TargetAssemblyTypeName: ActionDecider, Assembly-CSharp
         m_MethodName: ChooseCharacter
         m_Mode: 0
         m_Arguments:
@@ -588,5 +590,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c5ae08c03d947e6498f1f5b2df4ab99b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &620211152909329922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7682539312270935270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0477b2af3553d0f419b91d27f36ec657, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

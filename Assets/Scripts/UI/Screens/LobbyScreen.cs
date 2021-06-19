@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class LobbyScreen : ScreenBase
@@ -32,24 +33,24 @@ public class LobbyScreen : ScreenBase
 
     public void StartButtonClicked()
     {
-        bool canStart = true;
+        List<int> indexes = new List<int>();
         foreach (PlayerAvatar player in players)
         {
             if (player.IsOccupied() && !player.IsReady())
-                canStart = false;
+                return;
+            if (player.IsOccupied())
+                indexes.Add(player.GetPictureIndex());
         }
-        
-        if (canStart)
+
+        if (indexes.Count != indexes.Distinct().Count())
         {
-            SendIndexes();
-            Hide();
-            App.gameManager.StartSceneLoading(sceneToLoad);
-            App.screenManager.SetGameState(GameState.running);
+            return;
         }
-        else
-        {
-            Debug.LogWarning("Lobby empty");
-        }
+
+        SendIndexes();
+        Hide();
+        App.gameManager.StartSceneLoading(sceneToLoad);
+        App.screenManager.SetGameState(GameState.running);
     }
 
     public void BackButtonClicked()
