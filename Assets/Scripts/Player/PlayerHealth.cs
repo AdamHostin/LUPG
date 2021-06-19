@@ -38,7 +38,7 @@ public class PlayerHealth : MonoBehaviour
         {
             App.playerManager.EnqueuePlayer(this, playerName);
         }
-        hpBar.OnUIUpdate((float)health / (float)maxHealth);
+        hpBar?.OnUIUpdate((float)health / (float)maxHealth);
     }
 
     public int GetHealth()
