@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeBetweenDamage: 1
-  damageAmount: 10
+  damageAmount: 2
   playerAvatars:
   - {fileID: 21300000, guid: 13a6afae36475fe46a07da23499dbb31, type: 3}
   - {fileID: 21300000, guid: 3708bf22041b1df4e8e5e2a6afa33697, type: 3}
@@ -52,3 +52,4 @@ MonoBehaviour:
   - {fileID: 21300000, guid: cbf3861ab8fc28844bdc58d879188d79, type: 3}
   - {fileID: 21300000, guid: d97004204c361d745bcda55cccf6ad91, type: 3}
   - {fileID: 21300000, guid: 0592ce694dbf4ed42bd47d5f188344c0, type: 3}
+  players: []

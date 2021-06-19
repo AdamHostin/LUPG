@@ -20,7 +20,7 @@ public class EndLevelScreen : ScreenBase
         /*App.audioManager.Play("UIButtonClicked");
         App.audioManager.Stop("LevelFailed");
         */
-        App.gameManager.StartSceneUnloading(App.screenManager.GetSceneToUnload());
+        //App.gameManager.StartSceneUnloading(App.screenManager.GetSceneToUnload());
         App.screenManager.Hide<InGameScreen>();
         App.screenManager.Show<MenuScreen>();
         Hide();
