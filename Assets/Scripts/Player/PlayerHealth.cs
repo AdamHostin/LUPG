@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
+    [SerializeField] Sprite avatar;
     public string playerName;
 
     [SerializeField] int maxHealth;
@@ -42,6 +44,11 @@ public class PlayerHealth : MonoBehaviour
     public void SetHealth(int value)
     {
         health = value;
+    }
+
+    public void SetAvatar(Sprite avatar)
+    {
+        this.avatar = avatar;
     }
 }
 
