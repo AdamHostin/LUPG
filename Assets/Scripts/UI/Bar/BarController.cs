@@ -23,6 +23,7 @@ public class BarController : MonoBehaviour
     [SerializeField] Gradient frontBarColorGradient;
     [Tooltip("in Frames")]
     [SerializeField] int barChangeFrequency = 1;
+    [SerializeField] Image image;
     private float currentVal;
 
     private void Start()
@@ -96,5 +97,10 @@ public class BarController : MonoBehaviour
             frontBar.color = frontBarColorGradient.Evaluate(frontBar.fillAmount);
             yield return barChangeFrequency;
         }        
+    }
+
+    public void SetImage(Sprite image)
+    {
+        this.image.sprite = image;
     }
 }

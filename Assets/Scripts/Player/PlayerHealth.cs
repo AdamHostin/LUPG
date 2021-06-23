@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
+    [SerializeField] Sprite avatar;
     public string playerName;
 
     [SerializeField] int maxHealth;
@@ -11,6 +13,8 @@ public class PlayerHealth : MonoBehaviour
 
     [Header("Debug don't touch")]
     [SerializeField] int health;
+    [SerializeField] BarController hpBar;
+
 
     private void Start()
     {
@@ -23,15 +27,18 @@ public class PlayerHealth : MonoBehaviour
     {
         health += addHealth;
         Mathf.Clamp(health, -maxHealth, maxHealth);
+        hpBar.OnUIUpdate((float)health / (float)maxHealth);
     }
 
     public void Damage(int subHealth)
     {
         health -= subHealth;
+
         if (health <= 0)
         {
-            App.playerManager.EnqueuePlayer(this, playerName);
+            App.playerManager.EnqueuePlayer(this, avatar);
         }
+        hpBar?.OnUIUpdate((float)health / (float)maxHealth);
     }
 
     public int GetHealth()
@@ -42,6 +49,27 @@ public class PlayerHealth : MonoBehaviour
     public void SetHealth(int value)
     {
         health = value;
+    }
+
+    public void SetHpBar(BarController bar)
+    {
+        hpBar = bar;
+        hpBar.OnUIUpdate((float)health/ (float)maxHealth);
+        hpBar.SetImage(avatar);
+    }
+        
+
+
+    public void SetAvatar(Sprite avatar)
+    {
+        this.avatar = avatar;
+        if (hpBar != null) hpBar.SetImage(avatar);
+        Debug.Log("Has spprite");
+    }
+
+    public Sprite GetAvatar()
+    {
+        return avatar;
     }
 }
 
