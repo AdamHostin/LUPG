@@ -135,4 +135,10 @@ public class PlayerManager : MonoBehaviour
     {
         return players[index];
     }
+
+    public void ClearPlayer(PlayerHealth playerHealth)
+    {
+        clearPlayers.Add(playerHealth);
+        ClearDeadPlayers();
+    }
 }

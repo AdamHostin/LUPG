@@ -8,6 +8,8 @@ public class RisingWater : MonoBehaviour
     [SerializeField] float yEndPosition;
     [SerializeField] float waterSpeed;
 
+    Stack<Sprite> playerStack = new Stack<Sprite>();
+
     private void Start()
     {
         StartWaterCountdown();
@@ -30,11 +32,12 @@ public class RisingWater : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            //Kill player
+            playerStack.Push(collision.gameObject.GetComponent<PlayerHealth>().GetAvatar());
+            App.playerManager.ClearPlayer(collision.gameObject.GetComponent<PlayerHealth>());
         }
     }
 }
