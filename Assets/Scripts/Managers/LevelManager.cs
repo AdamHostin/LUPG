@@ -8,6 +8,6 @@ public class LevelManager : MonoBehaviour
     {
         App.playerManager.SpawnPlayers(GetComponentInChildren<SpawnPoints>());
         //TODO odpocitavnie
-        App.playerManager.StartDealingDamage();
+        //App.playerManager.StartDealingDamage();
     }
 }
