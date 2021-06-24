@@ -21,12 +21,7 @@ public class PlayerManager : MonoBehaviour
     private void Awake()
     {
         App.playerManager = this;
-    }
-
-    public void StartDealingDamage()
-    {
-        StartCoroutine(DamagePlayers());
-    }   
+    } 
 
     public void AddPlayer(PlayerHealth player)
     {
@@ -63,7 +58,7 @@ public class PlayerManager : MonoBehaviour
 
     IEnumerator DamagePlayers()
     {
-        while (players.Count != 1)
+        while (players.Count > 1)
         {
             foreach (PlayerHealth player in players)
             {
@@ -73,8 +68,8 @@ public class PlayerManager : MonoBehaviour
             ClearDeadPlayers();
             yield return new WaitForSeconds(timeBetweenDamage);
         }
+        if (players.Count==1) EnqueuePlayer(players[0], players[0].GetAvatar());
 
-        EnqueuePlayer(players[0], players[0].GetAvatar());
         ClearDeadPlayers();
         players.Clear();
         //Debug.Log(playerOrder.Count);
@@ -124,6 +119,8 @@ public class PlayerManager : MonoBehaviour
             player.gameObject.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
             player.gameObject.transform.position = spawnPoints.GetRandomSpawnPosition();
         }
+
+        StartCoroutine(DamagePlayers());
     }
 
     public int GetPlayerCount()
