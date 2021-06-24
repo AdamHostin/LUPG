@@ -7,6 +7,7 @@ public class AvatarController : MonoBehaviour
 {
     PlayerHealth playerHealth;
     PlayerAvatar playerAvatar;
+    [SerializeField] GameObject[] characterArray;
     int avatarIndex;
 
     bool canChoose = true;
@@ -58,11 +59,21 @@ public class AvatarController : MonoBehaviour
             playerAvatar.ToggleReady();
             canChoose = !canChoose;
             playerHealth.SetAvatar(playerAvatar.GetCurrentAvatar());
+            SetCharacter(playerAvatar.GetPictureIndex());
         }
     }
 
     public void SetAvatarIndex(int index)
     {
         avatarIndex = index;
+    }
+
+    public  void SetCharacter(int idx)
+    {
+        foreach (var character in characterArray)
+        {
+            character.SetActive(false);
+        }
+        characterArray[idx].SetActive(true);
     }
 }

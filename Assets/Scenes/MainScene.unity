@@ -415,5 +415,33 @@ PrefabInstance:
       propertyPath: damageAmount
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 7854823434433507580, guid: 415a0b00f4fc1934daba1385188f0692, type: 3}
+      propertyPath: playerAvatars.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7854823434433507580, guid: 415a0b00f4fc1934daba1385188f0692, type: 3}
+      propertyPath: playerAvatars.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: ea208073d1faeae4c8f0a0aedef02924, type: 3}
+    - target: {fileID: 7854823434433507580, guid: 415a0b00f4fc1934daba1385188f0692, type: 3}
+      propertyPath: playerAvatars.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: 680175033f31f324c95b8625ba9a19e6, type: 3}
+    - target: {fileID: 7854823434433507580, guid: 415a0b00f4fc1934daba1385188f0692, type: 3}
+      propertyPath: playerAvatars.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: 941b2bc5d0571da41ba65140a2d2c7f4, type: 3}
+    - target: {fileID: 7854823434433507580, guid: 415a0b00f4fc1934daba1385188f0692, type: 3}
+      propertyPath: playerAvatars.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: 8b5907de1fd12b84b865fa6c3e0bd379, type: 3}
+    - target: {fileID: 7854823434433507580, guid: 415a0b00f4fc1934daba1385188f0692, type: 3}
+      propertyPath: playerAvatars.Array.data[4]
+      value: 
+      objectReference: {fileID: 21300000, guid: 7fea944269aea4847b03dd4089ca0c02, type: 3}
+    - target: {fileID: 7854823434433507580, guid: 415a0b00f4fc1934daba1385188f0692, type: 3}
+      propertyPath: playerAvatars.Array.data[5]
+      value: 
+      objectReference: {fileID: 21300000, guid: 2c380df25f131364a865d62bfc77d594, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 415a0b00f4fc1934daba1385188f0692, type: 3}
