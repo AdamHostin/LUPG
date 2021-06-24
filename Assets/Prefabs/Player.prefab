@@ -370,7 +370,8 @@ MonoBehaviour:
   doubleJumpCount: 1
   wallJumpInterval: 1
   dashValue: 200
-  isDashStraight: 0
+  dashCount: 3
+  dashCooldown: 30
   dashBorder: 8
   blockTime: 5
   timeBetweenBlocks: 2
@@ -414,6 +415,7 @@ MonoBehaviour:
   playerName: 
   maxHealth: 100
   health: 0
+  hpBar: {fileID: 0}
 --- !u!114 &4025450580822147035
 MonoBehaviour:
   m_ObjectHideFlags: 0

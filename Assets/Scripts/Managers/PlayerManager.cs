@@ -80,7 +80,7 @@ public class PlayerManager : MonoBehaviour
         //Debug.Log(playerOrder.Count);
 
         App.screenManager.Show<WinScreen>();
-        SceneManager.UnloadSceneAsync("SpawnTestingScene");
+        SceneManager.UnloadSceneAsync("MovementTestingScene");
 
         //End Level/ call win screen / send queue
     }
