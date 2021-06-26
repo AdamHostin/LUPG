@@ -50,6 +50,7 @@ public class AudioManager : MonoBehaviour
     public void PlayLoop(string name)
     {
         Sound s = FindSound(name);
+        if (s.source.isPlaying) return;
         s.source.Play();
     }
 
