@@ -84,6 +84,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2240809451658434325}
   - component: {fileID: 6871224431157880545}
+  - component: {fileID: 5385164453866046602}
   m_Layer: 0
   m_Name: PLAYER5-FINAL
   m_TagString: Untagged
@@ -156,6 +157,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &5385164453866046602
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1289225634910342818}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d240a624de69ee04b96c8be3dd785191, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2865528735050843169
 GameObject:
   m_ObjectHideFlags: 0
@@ -166,6 +186,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5678820967318855427}
   - component: {fileID: 30853727588811053}
+  - component: {fileID: 2777457287446979136}
   m_Layer: 0
   m_Name: PLAYER6-FINAL
   m_TagString: Untagged
@@ -238,6 +259,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &2777457287446979136
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2865528735050843169}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2012adad22055b1448e7fb314f67ba21, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &3870755954813027466
 GameObject:
   m_ObjectHideFlags: 0
@@ -248,6 +288,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4657261394998037632}
   - component: {fileID: 5386378993253687649}
+  - component: {fileID: 6994065304841336972}
   m_Layer: 0
   m_Name: PLAYER3-FINAL
   m_TagString: Untagged
@@ -320,6 +361,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &6994065304841336972
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3870755954813027466}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8994b3bcca6648b4baca6c4c95b1bfc3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &4159531977111548016
 GameObject:
   m_ObjectHideFlags: 0
@@ -330,6 +390,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5696212261038373494}
   - component: {fileID: 6063531511818799116}
+  - component: {fileID: 2051515390481200154}
   m_Layer: 0
   m_Name: PLAYER4-FINAL
   m_TagString: Untagged
@@ -402,6 +463,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &2051515390481200154
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4159531977111548016}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: fdefe3a039d2c4143b23f00a4e000483, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &5208562270773335364
 GameObject:
   m_ObjectHideFlags: 0
@@ -412,6 +492,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2606228577739903329}
   - component: {fileID: 5751721289137724610}
+  - component: {fileID: 2073747869409041395}
   m_Layer: 0
   m_Name: PLAYER1-FINAL
   m_TagString: Untagged
@@ -484,6 +565,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &2073747869409041395
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5208562270773335364}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 02f1f0182b2aed34699dca4dc3cd7310, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &5543568083945474124
 GameObject:
   m_ObjectHideFlags: 0
@@ -494,6 +594,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6932014927749362157}
   - component: {fileID: 5462060113085436582}
+  - component: {fileID: 5192446771845518624}
   m_Layer: 0
   m_Name: PLAYER2-FINAL
   m_TagString: Untagged
@@ -566,6 +667,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &5192446771845518624
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5543568083945474124}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6ccdd7d0851ea934791864faf827a1e1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7682539312059995991
 GameObject:
   m_ObjectHideFlags: 0
