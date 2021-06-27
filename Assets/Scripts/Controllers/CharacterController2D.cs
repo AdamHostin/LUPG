@@ -28,6 +28,8 @@ public class CharacterController2D : MonoBehaviour
     GroundCheck gc;
     WallCheck wc;
     PlayerHealth playerHealth;
+
+    public Animator animator = null;
     
 
     int jumpCount;
@@ -136,10 +138,19 @@ public class CharacterController2D : MonoBehaviour
         if (!App.screenManager.CompareGameState(GameState.running))
             return;
 
-        movement = (int)context.ReadValue<float>();
-
+        movement = (int) context.ReadValue<float>();
+        
         if (!context.performed)
+        {
             movement = 0;
+        }
+        if (animator != null)
+        {
+            if (movement == 0) animator?.SetBool("Move", false);
+            else animator?.SetBool("Move", true);
+        }
+        
+
 
         targetVelocityX = movement * movementSpeed;
         ResolveFacing();
@@ -263,18 +274,21 @@ public class CharacterController2D : MonoBehaviour
 
         if (gc.CanJump())
         {
+            if (animator != null) animator?.SetBool("Jump", true);
             rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
             jumpCount = doubleJumpCount;
             gc.SetJump();
         }
         else if (wc.CanJump() && canWallJump)
         {
+            if (animator != null) animator?.SetBool("Jump", true);
             rb.velocity = new Vector2(rb.velocity.x, 0);
             rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
             StartCoroutine(WallJumpTimer());
         }
         else if (jumpCount > 0 && !wc.CanJump())
         {
+            if (animator != null) animator?.SetBool("Jump", true);
             rb.velocity = new Vector2(rb.velocity.x, 0);
             rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
             jumpCount--;
@@ -291,9 +305,10 @@ public class CharacterController2D : MonoBehaviour
     IEnumerator ManageDashState()
     {
         isDashed = true;
-
+        if (animator != null) animator?.SetBool("Dash", true);
         yield return new WaitForSeconds(0.25f);
         yield return new WaitUntil(() => Mathf.Abs(rb.velocity.x) < dashBorder);
+        if (animator != null) animator?.SetBool("Dash", false);
 
         isDashed = false;
     }
@@ -338,5 +353,11 @@ public class CharacterController2D : MonoBehaviour
     public void Delete()
     {
         Destroy(gameObject);
+    }
+
+    public void SetAnimator(Animator animator)
+    {
+        this.animator = animator;
+        animator.enabled = true;
     }
 }
