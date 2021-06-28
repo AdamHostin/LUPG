@@ -151,9 +151,9 @@ public class CharacterController2D : MonoBehaviour
 
     public void ManageDash(InputAction.CallbackContext context)
     {
-        if (!App.screenManager.CompareGameState(GameState.running) || !context.performed)
-        if (!context.performed || isFrozen)
+        if (!App.screenManager.CompareGameState(GameState.running) || !context.performed || isFrozen)
             return;
+
         if (dashCount - 1 < 0) return;
         
         if (!isBlocked)
