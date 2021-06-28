@@ -8,6 +8,8 @@ public class LobbyScreen : ScreenBase
     public PlayerAvatar[] players = new PlayerAvatar[4];
     [SerializeField] string sceneToLoad;
 
+    [SerializeField] List<Sprite> spritesInUse = new List<Sprite>();
+
     bool canChoose = false;
 
     private void Awake()
@@ -98,5 +100,20 @@ public class LobbyScreen : ScreenBase
                 player.SendAvatarIndex();
             }
         }
+    }
+
+    public void AddSpriteInUse(Sprite sprite)
+    {
+        spritesInUse.Add(sprite);
+    }
+
+    public void RemoveSpriteInUse(Sprite sprite)
+    {
+        spritesInUse.Remove(sprite);
+    }
+
+    public bool IsSpriteInUse(Sprite sprite)
+    {
+        return spritesInUse.Contains(sprite);
     }
 }
