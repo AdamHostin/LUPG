@@ -26,6 +26,7 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] DashType dashType;
     [Header("Debug don't touch")]
     [SerializeField] bool isFaceRight = true;
+    [SerializeField] GameObject freezeSprite;
     [Tooltip("Let it go")]
     [SerializeField] bool isFrozen = false;
     Rigidbody2D rb;
@@ -363,12 +364,13 @@ public class CharacterController2D : MonoBehaviour
     public IEnumerator FreezeCoroutine(float freezeTime, float freezeSmoothing)
     {
         float storedSmooth = movementSmoothing;
-
+        freezeSprite.SetActive(true);
         isFrozen = true;
         targetVelocityX = 0f;
         movementSmoothing = freezeSmoothing;
         yield return new WaitForSeconds(freezeTime);
         isFrozen = false;
+        freezeSprite.SetActive(false);
         movementSmoothing = storedSmooth;
     }
     public IEnumerator BoostCoroutine(float boostSpeed, float boostTime)
