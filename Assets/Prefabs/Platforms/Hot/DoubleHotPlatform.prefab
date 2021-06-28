@@ -70,7 +70,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -10
+  m_SortingOrder: -11
   m_Sprite: {fileID: 21300000, guid: f92e9056d7df1794482289e7deab6ce4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -117,6 +117,14 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5747576951063549964, guid: 8906cd0ddc98935488e71829ad47647b, type: 3}
+      propertyPath: objectsToFade.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5747576951063549964, guid: 8906cd0ddc98935488e71829ad47647b, type: 3}
+      propertyPath: objectsToFade.Array.data[3]
+      value: 
+      objectReference: {fileID: 6997870593338294062}
     - target: {fileID: 7730277580880414542, guid: 8906cd0ddc98935488e71829ad47647b, type: 3}
       propertyPath: m_RootOrder
       value: 3

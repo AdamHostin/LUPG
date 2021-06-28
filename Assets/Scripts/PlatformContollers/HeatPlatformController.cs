@@ -11,7 +11,12 @@ public class HeatPlatformController : MonoBehaviour
     [Header("Don't touch")]
     [SerializeField] List<PlayerHealth> playersHp = new List<PlayerHealth>();
     [SerializeField] PlatformRespawnController respawnController;
-    int countOfUses;
+    [SerializeField] int countOfUses;
+
+    private void Start()
+    {
+        ResetCountOfUses();
+    }
 
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -34,16 +39,18 @@ public class HeatPlatformController : MonoBehaviour
 
     IEnumerator DamagePlayers()
     {
-        foreach (var player in playersHp)
+        while ((countOfUses >= 0))
         {
-            countOfUses--;
-            player.Damage(damage);
+            foreach (var player in playersHp)
+            {
+                countOfUses--;
+                player.Damage(damage);
+            }
+            
+            yield return new WaitForSeconds(damageFrequency);
         }
-        if (countOfUses<=0)
-        {
-            StopCoroutine(DamagePlayers());
-        }
-        yield return new WaitForSeconds(damageFrequency);
+        StartCoroutine(respawnController.Fade(timeToRespawn));
+        
     }
 
     public void ResetCountOfUses()

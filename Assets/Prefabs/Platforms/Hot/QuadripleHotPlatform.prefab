@@ -152,7 +152,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -11
+  m_SortingOrder: -12
   m_Sprite: {fileID: 21300000, guid: f92e9056d7df1794482289e7deab6ce4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -231,9 +231,25 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 4290446905054188740, guid: caba512c49267bb40860bd441434f43e, type: 3}
+      propertyPath: objectsToFade.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4290446905054188740, guid: caba512c49267bb40860bd441434f43e, type: 3}
+      propertyPath: objectsToFade.Array.data[4]
+      value: 
+      objectReference: {fileID: 3207915656227092149}
+    - target: {fileID: 4290446905054188740, guid: caba512c49267bb40860bd441434f43e, type: 3}
+      propertyPath: objectsToFade.Array.data[5]
+      value: 
+      objectReference: {fileID: 6389304497351970149}
     - target: {fileID: 4637419025357796600, guid: caba512c49267bb40860bd441434f43e, type: 3}
       propertyPath: m_Size.x
       value: 3.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5787215474146746795, guid: caba512c49267bb40860bd441434f43e, type: 3}
+      propertyPath: m_SortingOrder
+      value: -9
       objectReference: {fileID: 0}
     - target: {fileID: 6152390409120149665, guid: caba512c49267bb40860bd441434f43e, type: 3}
       propertyPath: m_RootOrder

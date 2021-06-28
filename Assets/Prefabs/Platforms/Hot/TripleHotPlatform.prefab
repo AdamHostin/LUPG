@@ -199,6 +199,18 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5747576951063549964, guid: 8906cd0ddc98935488e71829ad47647b, type: 3}
+      propertyPath: objectsToFade.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5747576951063549964, guid: 8906cd0ddc98935488e71829ad47647b, type: 3}
+      propertyPath: objectsToFade.Array.data[3]
+      value: 
+      objectReference: {fileID: 995743161789639722}
+    - target: {fileID: 5747576951063549964, guid: 8906cd0ddc98935488e71829ad47647b, type: 3}
+      propertyPath: objectsToFade.Array.data[4]
+      value: 
+      objectReference: {fileID: 5083740459638145347}
     - target: {fileID: 7730277580880414542, guid: 8906cd0ddc98935488e71829ad47647b, type: 3}
       propertyPath: m_RootOrder
       value: 4
