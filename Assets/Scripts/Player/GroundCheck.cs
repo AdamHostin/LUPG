@@ -25,6 +25,7 @@ public class GroundCheck : JumpCheck
         base.OnTriggerEnter2D(collision);
         StopCoroutine(CoyoteeJump());
         isJumped = false;
+        if (player.animator != null) player?.animator.SetBool("Jump", false);
 
         if (collision.gameObject.CompareTag("Player"))
             player.JumpOnPlayer(collision.gameObject);

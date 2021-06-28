@@ -153,8 +153,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainMixer: {fileID: 24100000, guid: 964df9493e777294a836303473122685, type: 2}
-  sounds: []
-  triggerIndependentSounds: []
+  sounds:
+  - name: MenuMusic
+    clip: {fileID: 8300000, guid: 5cf7bb537ff30934ea115c2756806dc8, type: 3}
+    output: {fileID: 1367355526898330917, guid: 964df9493e777294a836303473122685, type: 2}
+    volume: 1
+    loop: 1
+    source: {fileID: 0}
+  triggerIndependentSounds:
+  - name: Hudba1
+    clip: {fileID: 8300000, guid: adcf788a1aeae8249ad1c51e6e25b3ab, type: 3}
+    output: {fileID: 1367355526898330917, guid: 964df9493e777294a836303473122685, type: 2}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Hudba2
+    clip: {fileID: 8300000, guid: 505b99d1753046948982c970646c984f, type: 3}
+    output: {fileID: 1367355526898330917, guid: 964df9493e777294a836303473122685, type: 2}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Hudba3
+    clip: {fileID: 8300000, guid: bc35453fe4928d249b209a44b607c720, type: 3}
+    output: {fileID: 1367355526898330917, guid: 964df9493e777294a836303473122685, type: 2}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
   minTimeBetweenAmbient: 0
   maxTimeBetweenAmbient: 0
 --- !u!4 &318028931
@@ -422,26 +446,26 @@ PrefabInstance:
     - target: {fileID: 7854823434433507580, guid: 415a0b00f4fc1934daba1385188f0692, type: 3}
       propertyPath: playerAvatars.Array.data[0]
       value: 
-      objectReference: {fileID: 21300000, guid: ea208073d1faeae4c8f0a0aedef02924, type: 3}
+      objectReference: {fileID: 21300000, guid: 1eb56c07d55de60428e85f26b420702b, type: 3}
     - target: {fileID: 7854823434433507580, guid: 415a0b00f4fc1934daba1385188f0692, type: 3}
       propertyPath: playerAvatars.Array.data[1]
       value: 
-      objectReference: {fileID: 21300000, guid: 680175033f31f324c95b8625ba9a19e6, type: 3}
+      objectReference: {fileID: 21300000, guid: 0ef1e8f097e9ba6468c409d4bc91d30c, type: 3}
     - target: {fileID: 7854823434433507580, guid: 415a0b00f4fc1934daba1385188f0692, type: 3}
       propertyPath: playerAvatars.Array.data[2]
       value: 
-      objectReference: {fileID: 21300000, guid: 941b2bc5d0571da41ba65140a2d2c7f4, type: 3}
+      objectReference: {fileID: 21300000, guid: c8076b310ba50fd45b40b77ff1ba63db, type: 3}
     - target: {fileID: 7854823434433507580, guid: 415a0b00f4fc1934daba1385188f0692, type: 3}
       propertyPath: playerAvatars.Array.data[3]
       value: 
-      objectReference: {fileID: 21300000, guid: 8b5907de1fd12b84b865fa6c3e0bd379, type: 3}
+      objectReference: {fileID: 21300000, guid: 21fa54608f5f1f54dbddff4fbb123679, type: 3}
     - target: {fileID: 7854823434433507580, guid: 415a0b00f4fc1934daba1385188f0692, type: 3}
       propertyPath: playerAvatars.Array.data[4]
       value: 
-      objectReference: {fileID: 21300000, guid: 7fea944269aea4847b03dd4089ca0c02, type: 3}
+      objectReference: {fileID: 21300000, guid: fbb37d3a07f6471499735a66436d1a9e, type: 3}
     - target: {fileID: 7854823434433507580, guid: 415a0b00f4fc1934daba1385188f0692, type: 3}
       propertyPath: playerAvatars.Array.data[5]
       value: 
-      objectReference: {fileID: 21300000, guid: 2c380df25f131364a865d62bfc77d594, type: 3}
+      objectReference: {fileID: 21300000, guid: 4f68ec1ac3d43a449b05e10e85b13e06, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 415a0b00f4fc1934daba1385188f0692, type: 3}

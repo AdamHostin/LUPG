@@ -50,6 +50,7 @@ public class AudioManager : MonoBehaviour
     public void PlayLoop(string name)
     {
         Sound s = FindSound(name);
+        if (s.source.isPlaying) return;
         s.source.Play();
     }
 
@@ -106,4 +107,38 @@ public class AudioManager : MonoBehaviour
         else
             mainMixer.SetFloat(key, Mathf.Log10(0.5f) * 20f);
     }
+
+
+    public IEnumerator PlayIngameMusic()
+    {
+        Debug.Log("IngameMusic played");
+
+        while (true)
+        {
+            currentAmbient = triggerIndependentSounds[0];
+            currentAmbient.source.Play();
+            yield return new WaitForSeconds(currentAmbient.source.clip.length);
+            currentAmbient = triggerIndependentSounds[1];
+            currentAmbient.source.Play();
+            yield return new WaitForSeconds(currentAmbient.source.clip.length);
+            currentAmbient = triggerIndependentSounds[2];
+            currentAmbient.source.Play();
+            yield return new WaitForSeconds(currentAmbient.source.clip.length);
+            currentAmbient = triggerIndependentSounds[0];
+            currentAmbient.source.Play();
+            yield return new WaitForSeconds(currentAmbient.source.clip.length);
+            currentAmbient = triggerIndependentSounds[1];
+            currentAmbient.source.Play();
+            yield return new WaitForSeconds(currentAmbient.source.clip.length);
+        }
+    }
+
+    public void StopIngameMusic()
+    {
+        Debug.Log("IngameMusic stopped");
+
+        StopCoroutine(PlayIngameMusic());
+        currentAmbient.source.Stop();
+    }
+
 }

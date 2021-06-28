@@ -73,9 +73,10 @@ public class PlayerManager : MonoBehaviour
         ClearDeadPlayers();
         players.Clear();
         //Debug.Log(playerOrder.Count);
-
+        App.screenManager.Hide<InGameScreen>();
         App.screenManager.Show<WinScreen>();
         SceneManager.UnloadSceneAsync("MovementTestingScene");
+        
 
         //End Level/ call win screen / send queue
     }

@@ -18,5 +18,6 @@ public class WinScreen : EndLevelScreen
 
         }
         App.playerManager.playerOrder.Clear();
+        App.audioManager.PlayLoop("MenuMusic");
     }
 }

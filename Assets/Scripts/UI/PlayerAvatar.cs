@@ -13,6 +13,7 @@ public class PlayerAvatar : MonoBehaviour
     Sprite[] sprites;
 
     [SerializeField] Sprite idleSprite;
+    [SerializeField] GameObject arrows;
 
     bool isReady = false;
     AvatarController avatarController;
@@ -33,8 +34,18 @@ public class PlayerAvatar : MonoBehaviour
     public void SetOccupation(AvatarController avatarController)
     {
         isOccupied = true;
+        
+        while (App.lobbyScreen.IsSpriteInUse(sprites[pictureIndex]))
+        {
+            pictureIndex++;
+            if (pictureIndex == sprites.Length)
+                pictureIndex = 0;
+        }
         image.sprite = sprites[pictureIndex];
+        arrows.SetActive(true);
         this.avatarController = avatarController;
+
+        
     }
 
     public void DeleteOccupation()
@@ -42,6 +53,7 @@ public class PlayerAvatar : MonoBehaviour
         isOccupied = false;
         avatarController = null;
         SetReady(false);
+        arrows.SetActive(false);
         ResetImage();
     }
 
@@ -52,24 +64,32 @@ public class PlayerAvatar : MonoBehaviour
 
     public void IncrementImage()
     {
-        pictureIndex++;
-        if (pictureIndex == sprites.Length)
-            pictureIndex = 0;
+        do
+        {
+            pictureIndex++;
+            if (pictureIndex == sprites.Length)
+                pictureIndex = 0;
+        } while (App.lobbyScreen.IsSpriteInUse(sprites[pictureIndex]));
         image.sprite = sprites[pictureIndex];
     }
 
     public void DecrementImage()
     {
-        pictureIndex--;
-        if (pictureIndex < 0)
-            pictureIndex = sprites.Length - 1;
+        do
+        {
+            pictureIndex--;
+            if (pictureIndex < 0)
+                pictureIndex = sprites.Length - 1;
+        } while (App.lobbyScreen.IsSpriteInUse(sprites[pictureIndex]));
         image.sprite = sprites[pictureIndex];
     }
 
     public void ResetImage()
     {
+        
         pictureIndex = 0;
         image.sprite = idleSprite;
+        
     }
 
     public bool IsReady()
@@ -79,14 +99,21 @@ public class PlayerAvatar : MonoBehaviour
 
     public void SetReady(bool value)
     {
+        
         isReady = value;
         checkBox.SetReady(isReady);
+        
     }
 
     public void ToggleReady()
     {
+        if (App.lobbyScreen.IsSpriteInUse(image.sprite) && !isReady) return;
+
         isReady = !isReady;
+        if (isReady) App.lobbyScreen.AddSpriteInUse(image.sprite);
+        else App.lobbyScreen.RemoveSpriteInUse(image.sprite);
         checkBox.SetReady(isReady);
+        arrows.SetActive(!isReady);
     }
 
     public void SendAvatarIndex()

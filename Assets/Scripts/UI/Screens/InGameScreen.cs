@@ -15,11 +15,15 @@ public class InGameScreen : ScreenBase
     {
         App.screenManager.SetGameState(GameState.running);
         base.Show();
+        App.audioManager.Stop("MenuMusic");
+        StartCoroutine(App.audioManager.PlayIngameMusic());
+
     }
 
     public override void Hide()
     {
         base.Hide();
+        App.audioManager.StopIngameMusic();
         //App.CameraManager.DisableCamera();
 
     }

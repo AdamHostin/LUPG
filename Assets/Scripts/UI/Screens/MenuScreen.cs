@@ -9,10 +9,12 @@ public class MenuScreen : ScreenBase
     public override void Show()
     {
         App.screenManager.SetGameState(GameState.menu);
-        //App.audioManager.PlayLoop("MenuSound");
+        App.audioManager.PlayLoop("MenuMusic");
         base.Show();
+        /*
         if (App.gameManager.GetSceneIndex() != 0) continnueButton.SetActive(true);
         else continnueButton.SetActive(false);
+        */
     }
 
     public override void Hide()
