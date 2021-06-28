@@ -153,8 +153,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainMixer: {fileID: 24100000, guid: 964df9493e777294a836303473122685, type: 2}
-  sounds: []
-  triggerIndependentSounds: []
+  sounds:
+  - name: MenuMusic
+    clip: {fileID: 8300000, guid: 5cf7bb537ff30934ea115c2756806dc8, type: 3}
+    output: {fileID: 1367355526898330917, guid: 964df9493e777294a836303473122685, type: 2}
+    volume: 1
+    loop: 1
+    source: {fileID: 0}
+  triggerIndependentSounds:
+  - name: Hudba1
+    clip: {fileID: 8300000, guid: adcf788a1aeae8249ad1c51e6e25b3ab, type: 3}
+    output: {fileID: 1367355526898330917, guid: 964df9493e777294a836303473122685, type: 2}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Hudba2
+    clip: {fileID: 8300000, guid: 505b99d1753046948982c970646c984f, type: 3}
+    output: {fileID: 1367355526898330917, guid: 964df9493e777294a836303473122685, type: 2}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Hudba3
+    clip: {fileID: 8300000, guid: bc35453fe4928d249b209a44b607c720, type: 3}
+    output: {fileID: 1367355526898330917, guid: 964df9493e777294a836303473122685, type: 2}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
   minTimeBetweenAmbient: 0
   maxTimeBetweenAmbient: 0
 --- !u!4 &318028931

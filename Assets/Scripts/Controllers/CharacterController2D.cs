@@ -26,12 +26,15 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] DashType dashType;
     [Header("Debug don't touch")]
     [SerializeField] bool isFaceRight = true;
+    [SerializeField] GameObject freezeSprite;
     [Tooltip("Let it go")]
     [SerializeField] bool isFrozen = false;
     Rigidbody2D rb;
     GroundCheck gc;
     WallCheck wc;
     PlayerHealth playerHealth;
+
+    public Animator animator = null;
     
 
     int jumpCount;
@@ -140,10 +143,19 @@ public class CharacterController2D : MonoBehaviour
         if (!App.screenManager.CompareGameState(GameState.running))
             return;
 
-        movement = (int)context.ReadValue<float>();
-
+        movement = (int) context.ReadValue<float>();
+        
         if (!context.performed || isFrozen)
+        {
             movement = 0;
+        }
+        if (animator != null)
+        {
+            if (movement == 0) animator?.SetBool("Move", false);
+            else animator?.SetBool("Move", true);
+        }
+        
+
 
         targetVelocityX = movement * movementSpeed;
         ResolveFacing();
@@ -151,9 +163,10 @@ public class CharacterController2D : MonoBehaviour
 
     public void ManageDash(InputAction.CallbackContext context)
     {
-        if (!App.screenManager.CompareGameState(GameState.running) || !context.performed || isFrozen)
+        if (!App.screenManager.CompareGameState(GameState.running) || !context.performed)
             return;
-
+        if (!context.performed || isFrozen)
+            return;
         if (dashCount - 1 < 0) return;
         
         if (!isBlocked)
@@ -243,7 +256,9 @@ public class CharacterController2D : MonoBehaviour
 
     public void ManageBlock(InputAction.CallbackContext context)
     {
-        if (!context.performed)
+        if (!App.screenManager.CompareGameState(GameState.running) || !context.performed)
+            return;
+        if (!context.performed || isFrozen)
             return;
 
         if (!isDashed && canBlock)
@@ -268,18 +283,21 @@ public class CharacterController2D : MonoBehaviour
 
         if (gc.CanJump())
         {
+            if (animator != null) animator?.SetBool("Jump", true);
             rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
             jumpCount = doubleJumpCount;
             gc.SetJump();
         }
         else if (wc.CanJump() && canWallJump)
         {
+            if (animator != null) animator?.SetBool("Jump", true);
             rb.velocity = new Vector2(rb.velocity.x, 0);
             rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
             StartCoroutine(WallJumpTimer());
         }
         else if (jumpCount > 0 && !wc.CanJump())
         {
+            if (animator != null) animator?.SetBool("Jump", true);
             rb.velocity = new Vector2(rb.velocity.x, 0);
             rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
             jumpCount--;
@@ -296,9 +314,10 @@ public class CharacterController2D : MonoBehaviour
     IEnumerator ManageDashState()
     {
         isDashed = true;
-
+        if (animator != null) animator?.SetBool("Dash", true);
         yield return new WaitForSeconds(0.25f);
         yield return new WaitUntil(() => Mathf.Abs(rb.velocity.x) < dashBorder);
+        if (animator != null) animator?.SetBool("Dash", false);
 
         isDashed = false;
     }
@@ -345,12 +364,13 @@ public class CharacterController2D : MonoBehaviour
     public IEnumerator FreezeCoroutine(float freezeTime, float freezeSmoothing)
     {
         float storedSmooth = movementSmoothing;
-
+        freezeSprite.SetActive(true);
         isFrozen = true;
         targetVelocityX = 0f;
         movementSmoothing = freezeSmoothing;
         yield return new WaitForSeconds(freezeTime);
         isFrozen = false;
+        freezeSprite.SetActive(false);
         movementSmoothing = storedSmooth;
     }
     public IEnumerator BoostCoroutine(float boostSpeed, float boostTime)
@@ -371,5 +391,11 @@ public class CharacterController2D : MonoBehaviour
     public void Delete()
     {
         Destroy(gameObject);
+    }
+
+    public void SetAnimator(Animator animator)
+    {
+        this.animator = animator;
+        animator.enabled = true;
     }
 }
