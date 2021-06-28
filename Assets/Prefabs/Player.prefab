@@ -1009,10 +1009,13 @@ MonoBehaviour:
   timeBetweenBlocks: 2
   smallRepulsionForce: 4
   bigRepulsionForce: 10
+  BoostHight: 40
+  BoostTime: 5
   jumpOnHeal: 30
   jumpOnDamage: 10
   dashType: 0
   isFaceRight: 1
+  isFrozen: 0
   animator: {fileID: 0}
   isJumping: 0
   canBlock: 1

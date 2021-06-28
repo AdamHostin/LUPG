@@ -19,11 +19,15 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] float timeBetweenBlocks;
     [SerializeField] float smallRepulsionForce;
     [SerializeField] float bigRepulsionForce;
+    [SerializeField] float BoostHight;
+    [SerializeField] float BoostTime;
     [SerializeField] int jumpOnHeal;
     [SerializeField] int jumpOnDamage;
     [SerializeField] DashType dashType;
     [Header("Debug don't touch")]
     [SerializeField] bool isFaceRight = true;
+    [Tooltip("Let it go")]
+    [SerializeField] bool isFrozen = false;
     Rigidbody2D rb;
     GroundCheck gc;
     WallCheck wc;
@@ -36,7 +40,7 @@ public class CharacterController2D : MonoBehaviour
     bool canWallJump = true;
     public bool isJumping = false;
 
-    int movement;
+    [SerializeField] int movement;
 
 
     
@@ -140,7 +144,7 @@ public class CharacterController2D : MonoBehaviour
 
         movement = (int) context.ReadValue<float>();
         
-        if (!context.performed)
+        if (!context.performed || isFrozen)
         {
             movement = 0;
         }
@@ -159,6 +163,8 @@ public class CharacterController2D : MonoBehaviour
     public void ManageDash(InputAction.CallbackContext context)
     {
         if (!App.screenManager.CompareGameState(GameState.running) || !context.performed)
+            return;
+        if (!context.performed || isFrozen)
             return;
         if (dashCount - 1 < 0) return;
         
@@ -251,6 +257,8 @@ public class CharacterController2D : MonoBehaviour
     {
         if (!App.screenManager.CompareGameState(GameState.running) || !context.performed)
             return;
+        if (!context.performed || isFrozen)
+            return;
 
         if (!isDashed && canBlock)
         {
@@ -264,7 +272,7 @@ public class CharacterController2D : MonoBehaviour
         if (!App.screenManager.CompareGameState(GameState.running))
             return;
 
-        if (!context.performed)
+        if (!context.performed || isFrozen)
         {
             isJumping = false;
             return;
@@ -342,6 +350,34 @@ public class CharacterController2D : MonoBehaviour
     public bool IsBlocked()
     {
         return isBlocked;
+    }
+
+    public void Freeze(float freezeTime, float freezeSmoothing)
+    {
+        StartCoroutine(FreezeCoroutine(freezeTime, freezeSmoothing));
+    }
+    public void Boost(float boostSpeed,float boostTime)
+    {
+        StartCoroutine(BoostCoroutine( boostSpeed,  boostTime));
+    }
+    public IEnumerator FreezeCoroutine(float freezeTime, float freezeSmoothing)
+    {
+        float storedSmooth = movementSmoothing;
+
+        isFrozen = true;
+        targetVelocityX = 0f;
+        movementSmoothing = freezeSmoothing;
+        yield return new WaitForSeconds(freezeTime);
+        isFrozen = false;
+        movementSmoothing = storedSmooth;
+    }
+    public IEnumerator BoostCoroutine(float boostSpeed, float boostTime)
+    {
+        float storedSpeed = movementSpeed;
+        movementSpeed = boostSpeed;
+
+        yield return new WaitForSeconds(boostTime);
+        movementSpeed = storedSpeed;
     }
 
     private void FixedUpdate()
