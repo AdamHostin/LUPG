@@ -46,10 +46,10 @@ MonoBehaviour:
   timeBetweenDamage: 1
   damageAmount: 2
   playerAvatars:
-  - {fileID: 21300000, guid: 13a6afae36475fe46a07da23499dbb31, type: 3}
-  - {fileID: 21300000, guid: 3708bf22041b1df4e8e5e2a6afa33697, type: 3}
-  - {fileID: 21300000, guid: 4867a167971c2064da257ff3f157e56c, type: 3}
-  - {fileID: 21300000, guid: cbf3861ab8fc28844bdc58d879188d79, type: 3}
-  - {fileID: 21300000, guid: d97004204c361d745bcda55cccf6ad91, type: 3}
-  - {fileID: 21300000, guid: 0592ce694dbf4ed42bd47d5f188344c0, type: 3}
+  - {fileID: 21300000, guid: 1eb56c07d55de60428e85f26b420702b, type: 3}
+  - {fileID: 21300000, guid: 0ef1e8f097e9ba6468c409d4bc91d30c, type: 3}
+  - {fileID: 21300000, guid: c8076b310ba50fd45b40b77ff1ba63db, type: 3}
+  - {fileID: 21300000, guid: 21fa54608f5f1f54dbddff4fbb123679, type: 3}
+  - {fileID: 21300000, guid: fbb37d3a07f6471499735a66436d1a9e, type: 3}
+  - {fileID: 21300000, guid: 4f68ec1ac3d43a449b05e10e85b13e06, type: 3}
   players: []

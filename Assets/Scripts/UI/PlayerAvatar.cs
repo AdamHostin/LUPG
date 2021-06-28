@@ -13,6 +13,7 @@ public class PlayerAvatar : MonoBehaviour
     Sprite[] sprites;
 
     [SerializeField] Sprite idleSprite;
+    [SerializeField] GameObject arrows;
 
     bool isReady = false;
     AvatarController avatarController;
@@ -41,6 +42,7 @@ public class PlayerAvatar : MonoBehaviour
                 pictureIndex = 0;
         }
         image.sprite = sprites[pictureIndex];
+        arrows.SetActive(true);
         this.avatarController = avatarController;
 
         
@@ -51,6 +53,7 @@ public class PlayerAvatar : MonoBehaviour
         isOccupied = false;
         avatarController = null;
         SetReady(false);
+        arrows.SetActive(false);
         ResetImage();
     }
 
@@ -110,6 +113,7 @@ public class PlayerAvatar : MonoBehaviour
         if (isReady) App.lobbyScreen.AddSpriteInUse(image.sprite);
         else App.lobbyScreen.RemoveSpriteInUse(image.sprite);
         checkBox.SetReady(isReady);
+        arrows.SetActive(!isReady);
     }
 
     public void SendAvatarIndex()
