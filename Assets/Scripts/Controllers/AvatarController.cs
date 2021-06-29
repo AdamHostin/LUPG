@@ -11,7 +11,6 @@ public class AvatarController : MonoBehaviour
     int avatarIndex;
 
     bool canChoose = true;
-    bool hasMoved = false;
 
     private void Start()
     {
@@ -26,16 +25,7 @@ public class AvatarController : MonoBehaviour
         if (!context.performed || !canChoose || context.started)
             return;
 
-        int value = Mathf.RoundToInt(context.ReadValue<float>() / 2f);
-        
-        if (value == 0)
-        {
-            hasMoved = false;
-        }
-
-        Debug.Log(hasMoved);
-        if (hasMoved)
-            return;
+        int value = Mathf.RoundToInt(context.ReadValue<float>());
 
         if (value > 0)
         {
@@ -45,8 +35,6 @@ public class AvatarController : MonoBehaviour
         {
             playerAvatar.DecrementImage();
         }
-
-        hasMoved = true;
     }
 
     public void ReadyUp(InputAction.CallbackContext context)
