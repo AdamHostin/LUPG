@@ -49,7 +49,7 @@ public class SettingsScreen : ScreenBase
 
     public void SetMusicVolume()
     {
-        mainMixer.SetFloat("musictVol", Mathf.Log10(Mathf.Max(musicSlider.value, 0.0001f)) * 20f);
+        mainMixer.SetFloat("musicVol", Mathf.Log10(Mathf.Max(musicSlider.value, 0.0001f)) * 20f);
     }
 
     void LoadValue(string key, Slider slider)
