@@ -437,7 +437,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7854823434433507580, guid: 415a0b00f4fc1934daba1385188f0692, type: 3}
       propertyPath: damageAmount
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7854823434433507580, guid: 415a0b00f4fc1934daba1385188f0692, type: 3}
       propertyPath: playerAvatars.Array.size
