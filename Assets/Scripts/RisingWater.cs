@@ -36,7 +36,10 @@ public class RisingWater : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            playerStack.Push(collision.gameObject.GetComponent<PlayerHealth>().GetAvatar());
+            //playerStack.Push(collision.gameObject.GetComponent<PlayerHealth>().GetAvatar());
+
+            PlayerHealth player = collision.gameObject.GetComponent<PlayerHealth>();
+            App.playerManager.KillPlayersBySuddenDeath(player,player.GetAvatar());
             App.playerManager.ClearPlayer(collision.gameObject.GetComponent<PlayerHealth>());
         }
     }

@@ -10,7 +10,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] Sprite[] playerAvatars = new Sprite[6];
 
 
-
+    public Stack<Sprite> playersKilledByDeadPlayers = new Stack<Sprite>();
     public Queue<Sprite> playerOrder = new Queue<Sprite>();
 
     List<PlayerHealth> clearPlayers = new List<PlayerHealth>();
@@ -32,9 +32,14 @@ public class PlayerManager : MonoBehaviour
     {
         if (playerOrder.Contains(name)) return;
         playerOrder.Enqueue(name);
+        clearPlayers.Add(player);               
+    }
+
+    public void KillPlayersBySuddenDeath(PlayerHealth player, Sprite sprite)
+    {
+        if (playersKilledByDeadPlayers.Contains(sprite)) return;
+        playersKilledByDeadPlayers.Push(sprite);
         clearPlayers.Add(player);
-        
-        
     }
 
     public void HealOthers(PlayerHealth initiator, int healAmount)
@@ -69,7 +74,7 @@ public class PlayerManager : MonoBehaviour
             yield return new WaitForSeconds(timeBetweenDamage);
         }
         if (players.Count==1) EnqueuePlayer(players[0], players[0].GetAvatar());
-
+        while (playersKilledByDeadPlayers.Count > 0) playerOrder.Enqueue(playersKilledByDeadPlayers.Pop());
         ClearDeadPlayers();
         players.Clear();
         //Debug.Log(playerOrder.Count);
