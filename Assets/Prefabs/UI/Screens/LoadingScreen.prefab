@@ -53,6 +53,7 @@ MonoBehaviour:
   timeToStart: 1
   loadingClip: {fileID: 0}
   countdownClip: {fileID: 0}
+  button: {fileID: 2177591283521297909}
 --- !u!1 &4137233052419850393
 GameObject:
   m_ObjectHideFlags: 0
