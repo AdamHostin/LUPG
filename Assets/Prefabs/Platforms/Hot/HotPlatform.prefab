@@ -155,7 +155,7 @@ MonoBehaviour:
   damage: 1
   damageFrequency: 1
   maxCountOfUses: 10
-  timeToRespawn: 30
+  timeToRespawn: 10
   playersHp: []
   respawnController: {fileID: 5747576951063549964}
   countOfUses: 0
