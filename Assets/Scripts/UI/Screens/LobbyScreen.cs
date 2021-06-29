@@ -24,6 +24,7 @@ public class LobbyScreen : ScreenBase
         App.inputManager.EnableJoining();
         canChoose = true;
         App.screenManager.SetGameState(GameState.lobby);
+	spritesInUse.Clear();
     }
 
     public override void Hide()

@@ -10,18 +10,19 @@ public class UnstablePlatform : MonoBehaviour
     [SerializeField] int changeFrequency;
     [SerializeField] float opacityOffset;
     [SerializeField] float minAlphaToCollide;
+    [SerializeField] GameObject[] objectsToFade;
     
 
     Collider2D platformColl;
     Collider2D platformTrigger;
-    SpriteRenderer sprite;
+    SpriteRenderer[] sprites;
 
     // Start is called before the first frame update
     void Start()
     {
         platformColl = GetComponentsInChildren<BoxCollider2D>()[1];
         platformTrigger = GetComponent<BoxCollider2D>();
-        sprite = GetComponentInChildren<SpriteRenderer>();
+        sprites = GetComponentsInChildren<SpriteRenderer>();
 
     }
 
@@ -37,13 +38,13 @@ public class UnstablePlatform : MonoBehaviour
     {
         yield return new WaitForSeconds(timeBeforeFading);
 
-        while (sprite.color.a > opacityOffset)
+        while (sprites[0].color.a > opacityOffset)
         {
-            float newAlpha = Mathf.Lerp(sprite.color.a, 0, fadeSpeed * Time.deltaTime);
+            float newAlpha = Mathf.Lerp(sprites[0].color.a, 0, fadeSpeed * Time.deltaTime);
             newAlpha = Mathf.Clamp(newAlpha, 0, 1);
-            sprite.color = new Color (sprite.color.r, sprite.color.g, sprite.color.b,newAlpha);
+            foreach (var sprite  in sprites) sprite.color = new Color (sprite.color.r, sprite.color.g, sprite.color.b,newAlpha);
 
-            if (sprite.color.a < minAlphaToCollide)
+            if (sprites[0].color.a < minAlphaToCollide)
             {
                 platformColl.enabled = false;
                 platformTrigger.enabled = false;  
@@ -52,25 +53,45 @@ public class UnstablePlatform : MonoBehaviour
             yield return changeFrequency;
         }
 
-        sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, 0);
+        foreach (var sprite in sprites) sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, 0);
+        DisableObjects();
 
         yield return new WaitForSeconds(secondsToBeInvisible);
 
 
-        while (sprite.color.a <  1 - opacityOffset)
+        while (sprites[0].color.a <  1 - opacityOffset)
         {
-            float newAlpha = Mathf.Lerp(sprite.color.a, 1, fadeSpeed * Time.deltaTime);
+            float newAlpha = Mathf.Lerp(sprites[0].color.a, 1, fadeSpeed * Time.deltaTime);
             newAlpha = Mathf.Clamp(newAlpha, 0, 1);
-            sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, newAlpha);
+            foreach (var sprite in sprites) sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, newAlpha);
 
-            if (sprite.color.a < minAlphaToCollide)
+            if (sprites[0].color.a < minAlphaToCollide)
             {
                 platformColl.enabled = true;
+
             }
 
             yield return changeFrequency;
         }
+        foreach (var sprite in sprites) sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, 1);
         platformTrigger.enabled = true;
+        
     }
     
+
+    void DisableObjects()
+    {
+        foreach (var childObject in objectsToFade)
+        {
+            childObject.SetActive(false);
+        }
+    }
+
+    void EnableObjects()
+    {
+        foreach (var childObject in objectsToFade)
+        {
+            childObject.SetActive(true);
+        }
+    }
 }
