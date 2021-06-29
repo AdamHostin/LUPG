@@ -17,6 +17,7 @@ public class InGameScreen : ScreenBase
         base.Show();
         App.audioManager.Stop("MenuMusic");
         StartCoroutine(App.audioManager.PlayIngameMusic());
+        App.audioManager.PlayLoop("InGameAmbient");
 
     }
 
@@ -24,6 +25,7 @@ public class InGameScreen : ScreenBase
     {
         base.Hide();
         App.audioManager.StopIngameMusic();
+        App.audioManager.Stop("InGameAmbient");
         //App.CameraManager.DisableCamera();
 
     }
