@@ -160,6 +160,12 @@ MonoBehaviour:
     volume: 1
     loop: 1
     source: {fileID: 0}
+  - name: InGameAmbient
+    clip: {fileID: 8300000, guid: 31a3e01e039cf774abfbb518f7c670f1, type: 3}
+    output: {fileID: -2256460640356210311, guid: 964df9493e777294a836303473122685, type: 2}
+    volume: 1
+    loop: 1
+    source: {fileID: 0}
   triggerIndependentSounds:
   - name: Hudba1
     clip: {fileID: 8300000, guid: adcf788a1aeae8249ad1c51e6e25b3ab, type: 3}
