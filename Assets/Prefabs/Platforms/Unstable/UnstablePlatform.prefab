@@ -77,6 +77,8 @@ MonoBehaviour:
   changeFrequency: 2
   opacityOffset: 0.05
   minAlphaToCollide: 0.75
+  objectsToFade:
+  - {fileID: 828100377836035731}
 --- !u!1 &828100377836035731
 GameObject:
   m_ObjectHideFlags: 0
