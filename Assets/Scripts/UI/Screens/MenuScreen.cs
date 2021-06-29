@@ -53,6 +53,11 @@ public class MenuScreen : ScreenBase
         App.screenManager.Show<SettingsScreen>();
     }
 
+    public void OHreButtonClicked()
+    {
+        App.screenManager.Show<OHreScreen>();
+    }
+
     public void ExitButtonClicked()
     {
         Application.Quit();

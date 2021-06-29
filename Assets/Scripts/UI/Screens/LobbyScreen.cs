@@ -6,7 +6,6 @@ using UnityEngine;
 public class LobbyScreen : ScreenBase
 {
     public PlayerAvatar[] players = new PlayerAvatar[4];
-    [SerializeField] string sceneToLoad;
 
     [SerializeField] List<Sprite> spritesInUse = new List<Sprite>();
 
@@ -51,10 +50,8 @@ public class LobbyScreen : ScreenBase
         }
 
         SendIndexes();
+        App.screenManager.Show<LoadingScreen>();
         Hide();
-        App.screenManager.Show<InGameScreen>();
-        App.gameManager.StartSceneLoading(sceneToLoad);
-        App.screenManager.SetGameState(GameState.running);
     }
 
     public void BackButtonClicked()
