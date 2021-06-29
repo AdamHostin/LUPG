@@ -20,4 +20,11 @@ public class WinScreen : EndLevelScreen
         App.playerManager.playerOrder.Clear();
         App.audioManager.PlayLoop("MenuMusic");
     }
+
+    public void NewGameButtonClicked()
+    {
+        App.screenManager.Hide<InGameScreen>();
+        App.screenManager.Show<LobbyScreen>();
+        base.Hide();
+    }
 }

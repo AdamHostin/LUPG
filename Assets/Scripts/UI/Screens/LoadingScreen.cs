@@ -21,14 +21,14 @@ public class LoadingScreen : ScreenBase
     public override void Show()
     {
         base.Show();
-        videoPlayer.clip = loadingClip;
-        videoPlayer.Play();
+        //videoPlayer.clip = loadingClip;
+        //videoPlayer.Play();
     }
 
     public void StartButtonClicked()
     {
-        videoPlayer.clip = countdownClip;
-        videoPlayer.Play();
+        //videoPlayer.clip = countdownClip;
+        //videoPlayer.Play();
         Invoke("StartGame", timeToStart);
     }
 
