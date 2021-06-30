@@ -8,6 +8,7 @@ public class AudioManager : MonoBehaviour
     public AudioMixer mainMixer;
     public Sound[] sounds;
     public Sound[] triggerIndependentSounds;
+    public Sound[] moveSounds;
     public float minTimeBetweenAmbient;
     public float maxTimeBetweenAmbient;
 
@@ -34,6 +35,15 @@ public class AudioManager : MonoBehaviour
             s.source.volume = s.volume;
             s.source.loop = s.loop;
         }
+
+        foreach (Sound s in moveSounds)
+        {
+            s.source = gameObject.AddComponent<AudioSource>();
+            s.source.clip = s.clip;
+            s.source.outputAudioMixerGroup = s.output;
+            s.source.volume = s.volume;
+            s.source.loop = s.loop;
+        }
     }
 
     private void Start()
@@ -52,6 +62,13 @@ public class AudioManager : MonoBehaviour
         Sound s = FindSound(name);
         if (s.source.isPlaying) return;
         s.source.Play();
+    }
+
+    public void PlayMoveSound()
+    {
+        Debug.Log(moveSounds.Length);
+        int rnd = UnityEngine.Random.Range(0, moveSounds.Length);
+        moveSounds[rnd].source.PlayOneShot(moveSounds[rnd].clip);
     }
 
     public void Stop(string name)

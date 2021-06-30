@@ -57,12 +57,6 @@ MonoBehaviour:
     volume: 1
     loop: 1
     source: {fileID: 0}
-  - name: Move
-    clip: {fileID: 8300000, guid: 3683236304d0a2542b515e0c5113680b, type: 3}
-    output: {fileID: -5991720006869273535, guid: 964df9493e777294a836303473122685, type: 2}
-    volume: 1
-    loop: 0
-    source: {fileID: 0}
   - name: Jump
     clip: {fileID: 8300000, guid: c9c3ce00dadd6534a9a4dba7e3e6cc01, type: 3}
     output: {fileID: -5991720006869273535, guid: 964df9493e777294a836303473122685, type: 2}
@@ -169,6 +163,37 @@ MonoBehaviour:
   - name: Hudba3
     clip: {fileID: 8300000, guid: bc35453fe4928d249b209a44b607c720, type: 3}
     output: {fileID: 1367355526898330917, guid: 964df9493e777294a836303473122685, type: 2}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  moveSounds:
+  - name: 
+    clip: {fileID: 8300000, guid: e9a78e48bcbb29d42b63e1a7714bfbe0, type: 3}
+    output: {fileID: -5991720006869273535, guid: 964df9493e777294a836303473122685, type: 2}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: 
+    clip: {fileID: 8300000, guid: 9490a213fbb21364ea7ec79c9110c49e, type: 3}
+    output: {fileID: -5991720006869273535, guid: 964df9493e777294a836303473122685, type: 2}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: 
+    clip: {fileID: 8300000, guid: cae14364cfc7aff4786c217d4eebc3cf, type: 3}
+    output: {fileID: -5991720006869273535, guid: 964df9493e777294a836303473122685, type: 2}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: 
+    clip: {fileID: 8300000, guid: ed04e4fdb9646ac488a4e0d26a9d098f, type: 3}
+    output: {fileID: -5991720006869273535, guid: 964df9493e777294a836303473122685, type: 2}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: 
+    clip: {fileID: 8300000, guid: 58cd0ba9afe777a4ebc65dd6a093c738, type: 3}
+    output: {fileID: -5991720006869273535, guid: 964df9493e777294a836303473122685, type: 2}
     volume: 1
     loop: 0
     source: {fileID: 0}

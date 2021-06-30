@@ -166,14 +166,12 @@ public class CharacterController2D : MonoBehaviour
 
     IEnumerator ManageMoveSound()
     {
-        float time = App.audioManager.FindSound("Move").clip.length;
-
         while (true)
         {
             if (movement != 0)
             {
-                App.audioManager.Play("Move");
-                yield return new WaitForSeconds(time);
+                App.audioManager.PlayMoveSound();
+                yield return new WaitForSeconds(1);
             }
             yield return new WaitForEndOfFrame();
         }

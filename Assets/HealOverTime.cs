@@ -17,6 +17,7 @@ public class HealOverTime : MonoBehaviour
         {
             playersInRange.Add(collision.GetComponent<PlayerHealth>());
             if (playersInRange.Count == 1) StartCoroutine(Heal());
+            App.audioManager.PlayLoop("WetZone");
         }
     }
 
@@ -26,6 +27,7 @@ public class HealOverTime : MonoBehaviour
         {
             playersInRange.Remove(collision.GetComponent<PlayerHealth>());
             if (playersInRange.Count == 0) StopCoroutine(Heal());
+            App.audioManager.Stop("WetZone");
         }
     }
 
