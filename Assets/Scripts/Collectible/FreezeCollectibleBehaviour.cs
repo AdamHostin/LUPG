@@ -17,6 +17,7 @@ public class FreezeCollectibleBehaviour : MonoBehaviour
         Debug.Log("Freeze collected");
         collision.gameObject.GetComponent<CharacterController2D>().Freeze(freezeTime,freezeSmoothing);
         collectibleController.DisableCollectible();
+        App.audioManager.Play("Freeze");
 
             
         

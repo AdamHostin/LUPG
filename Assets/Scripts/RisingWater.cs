@@ -24,6 +24,8 @@ public class RisingWater : MonoBehaviour
     {
         yield return new WaitForSeconds(timeToStart);
 
+        App.audioManager.Play("WaveStart");
+
         while (transform.position.y < yEndPosition)
         {
             transform.Translate(Vector3.up * Time.deltaTime * waterSpeed);
@@ -41,6 +43,7 @@ public class RisingWater : MonoBehaviour
             PlayerHealth player = collision.gameObject.GetComponent<PlayerHealth>();
             App.playerManager.KillPlayersBySuddenDeath(player,player.GetAvatar());
             App.playerManager.ClearPlayer(collision.gameObject.GetComponent<PlayerHealth>());
+            App.audioManager.Play("WaveKill");
         }
     }
 }

@@ -98,6 +98,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boostedMoveSpeed: 40
   boostedTime: 2
+  isSpeedUp: 1
   collectibleController: {fileID: 610818409736180954}
 --- !u!58 &3187383054358255887
 CircleCollider2D:

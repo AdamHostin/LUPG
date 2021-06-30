@@ -6,6 +6,7 @@ public class BoostCollectableBehaviour : MonoBehaviour
 {
     [SerializeField] float boostedMoveSpeed;
     [SerializeField] float boostedTime;
+    [SerializeField] bool isSpeedUp;
 
     [Header("Dont touch")]
     [SerializeField] CollectibleController collectibleController;
@@ -16,7 +17,10 @@ public class BoostCollectableBehaviour : MonoBehaviour
         collision.gameObject.GetComponent<CharacterController2D>().Boost(boostedMoveSpeed, boostedTime);
         collectibleController.DisableCollectible();
 
-
+        if (isSpeedUp)
+            App.audioManager.Play("SpeedUp");
+        else
+            App.audioManager.Play("SlowDown");
 
     }
 }

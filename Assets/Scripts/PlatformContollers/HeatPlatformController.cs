@@ -25,6 +25,7 @@ public class HeatPlatformController : MonoBehaviour
         {
             if (playersHp.Count == 0) StartCoroutine(DamagePlayers());
             playersHp.Add(collision.GetComponent<PlayerHealth>());
+            App.audioManager.PlayLoop("HotZone");
         }
     }
 
@@ -34,6 +35,7 @@ public class HeatPlatformController : MonoBehaviour
         {
             playersHp.Remove(collision.GetComponent<PlayerHealth>());
             if (playersHp.Count == 0) StopCoroutine(DamagePlayers());
+            App.audioManager.Stop("HotZone");
         }
     }
 

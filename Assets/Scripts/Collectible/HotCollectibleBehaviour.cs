@@ -14,6 +14,6 @@ public class HotCollectibleBehaviour : MonoBehaviour
         //Debug.Log("before damage " + collision.gameObject.GetComponent<PlayerHealth>().GetHealth());
         collision.gameObject.GetComponent<PlayerHealth>().Damage(damage);
         collectibleController.DisableCollectible();
-
+        App.audioManager.Play("HotCollectible");
     }
 }

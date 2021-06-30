@@ -69,6 +69,7 @@ public class CharacterController2D : MonoBehaviour
         playerHealth = GetComponent<PlayerHealth>();
 
         playerIndex = App.playerManager.GetPlayerIndex();
+        StartCoroutine(ManageMoveSound());
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -92,6 +93,7 @@ public class CharacterController2D : MonoBehaviour
                     Debug.Log("pow " + CalculateDirection(collision.gameObject.transform.position, transform.position));
                     //One dashed one blocked
                     Repulse(CalculateDirection(collision.gameObject.transform.position, transform.position), bigRepulsionForce);
+                    App.audioManager.Play("Block");
                 }
                 else if (!playerController.IsDashed())
                 {
@@ -125,6 +127,7 @@ public class CharacterController2D : MonoBehaviour
         {
             otherPlayerHealth.Heal(jumpOnHeal);
             playerHealth.Damage(jumpOnDamage);
+            App.audioManager.Play("JumpOnHead");
         }
     }
 
@@ -161,6 +164,21 @@ public class CharacterController2D : MonoBehaviour
         ResolveFacing();
     }
 
+    IEnumerator ManageMoveSound()
+    {
+        float time = App.audioManager.FindSound("Move").clip.length;
+
+        while (true)
+        {
+            if (movement != 0)
+            {
+                App.audioManager.Play("Move");
+                yield return new WaitForSeconds(time);
+            }
+            yield return new WaitForEndOfFrame();
+        }
+    }
+
     public void ManageDash(InputAction.CallbackContext context)
     {
         if (!App.screenManager.CompareGameState(GameState.running) || !context.performed)
@@ -187,6 +205,7 @@ public class CharacterController2D : MonoBehaviour
                     break;
             }
             StartCoroutine(DashCooldown());
+            App.audioManager.Play("Dash");
         }
         StartCoroutine(ManageDashState());
         
@@ -287,6 +306,7 @@ public class CharacterController2D : MonoBehaviour
             rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
             jumpCount = doubleJumpCount;
             gc.SetJump();
+            App.audioManager.Play("Jump");
         }
         else if (wc.CanJump() && canWallJump)
         {
@@ -294,6 +314,7 @@ public class CharacterController2D : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, 0);
             rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
             StartCoroutine(WallJumpTimer());
+            App.audioManager.Play("Jump");
         }
         else if (jumpCount > 0 && !wc.CanJump())
         {
@@ -301,6 +322,7 @@ public class CharacterController2D : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, 0);
             rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
             jumpCount--;
+            App.audioManager.Play("Jump");
         }
     }
 

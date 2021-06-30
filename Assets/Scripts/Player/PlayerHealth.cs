@@ -37,6 +37,7 @@ public class PlayerHealth : MonoBehaviour
         if (health <= 0)
         {
             App.playerManager.EnqueuePlayer(this, avatar);
+            App.audioManager.Play("Evaporate");
         }
         hpBar?.OnUIUpdate((float)health / (float)maxHealth);
     }

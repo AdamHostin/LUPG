@@ -147,6 +147,12 @@ MonoBehaviour:
     volume: 1
     loop: 0
     source: {fileID: 0}
+  - name: HotCollectible
+    clip: {fileID: 8300000, guid: f8b5253f2695a074db6942de79cdc985, type: 3}
+    output: {fileID: -5991720006869273535, guid: 964df9493e777294a836303473122685, type: 2}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
   triggerIndependentSounds:
   - name: Hudba1
     clip: {fileID: 8300000, guid: adcf788a1aeae8249ad1c51e6e25b3ab, type: 3}
