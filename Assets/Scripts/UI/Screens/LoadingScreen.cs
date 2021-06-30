@@ -17,23 +17,25 @@ public class LoadingScreen : ScreenBase
 
     VideoPlayer videoPlayer;
 
-    private void Start()
+    private void Awake()
     {
-        videoPlayer = GetComponent<VideoPlayer>();
+        videoPlayer = GetComponentInChildren<VideoPlayer>();
     }
 
     public override void Show()
     {
         base.Show();
-        //videoPlayer.clip = loadingClip;
-        //videoPlayer.Play();
+        videoPlayer.isLooping = true;
+        videoPlayer.clip = loadingClip;
+        videoPlayer.Play();
     }
 
     public void StartButtonClicked()
     {
         button.enabled = false;
-        //videoPlayer.clip = countdownClip;
-        //videoPlayer.Play();
+        videoPlayer.isLooping = false;
+        videoPlayer.clip = countdownClip;
+        videoPlayer.Play();
         Invoke("StartGame", timeToStart);
     }
 

@@ -50,9 +50,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneToLoad: MovementTestingScene
-  timeToStart: 1
+  timeToStart: 4.5
   loadingClip: {fileID: 32900000, guid: 7440a54b653838442ae565f9577b3d6e, type: 3}
-  countdownClip: {fileID: 0}
+  countdownClip: {fileID: 32900000, guid: 20552c046ba998846b4170a13a2069bd, type: 3}
   button: {fileID: 2177591283521297909}
 --- !u!1 &4137233052419850393
 GameObject:
